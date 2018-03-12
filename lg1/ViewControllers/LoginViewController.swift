@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     weak var urlSessionTask: URLSessionTask?
     
+    //Mark: override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,35 +41,41 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         txtPass?.delegate = self
         
 
-        
+        //loginBtn Color + Roundness
         loginBtnLabel.backgroundColor = fr8hubBlue
         loginBtnLabel.layer.cornerRadius = 5
         loginBtnLabel.layer.borderWidth = 1
 
+        //Text Fields -> Custom Placeholder
         txtUser?.attributedPlaceholder = NSAttributedString(string: userPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         
+        //Text View Edit -> SEE MARK:
         performLinkMaker()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+200)
         
+        //MARK: Scroll View enable on Keyboard appear
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Signal
         setupSignalSubscription()
         
+        //NavBar Title as a Custom Image
         let logo = UIImage(named: "fr8hubLogo.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
         
+        //NavBar custom Color
         navigationController?.navigationBar.barTintColor = fr8hubOrange
+        //NavBar removeShadow
         removeNavBarShadow()
     }
     
+    //NavBar status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -78,6 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         Messages.postRequestFailed.cancelSubscription(for: self)
     }
     
+    //MARK: Buttons
     @IBAction func forgotPassBtn() {
         
         deprecatedLogin()
@@ -86,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBAction func loginBtn() {
         alamoLogin()
     }
-    
+    // push next controller
     func openNextController(){
         DispatchQueue.main.async {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "DriverTableViewController") as! DriverTableViewController
@@ -94,7 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.navigationController?.pushViewController(myVC, animated: true)
         }
     }
-    
+    //MARK: Make Text View Atrributed. Hyperlinks, UIFont, UIColor, ...
     func turnTextToLink (inputSring: String) -> NSMutableAttributedString{
 
         let linkString = NSMutableAttributedString(string: inputSring, attributes: [
@@ -156,10 +164,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     //MARK: UITextFieldDelegate
+    // Hide the keyboard.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Hide the keyboard.
-        textField.resignFirstResponder()
-        loginBtn()
+        
+        // On Email input when Done is pressed - > Go to next txt field -> Login
+        if textField == txtUser {
+            textField.resignFirstResponder()
+            txtPass?.becomeFirstResponder()
+        } else if textField == txtPass {
+            textField.resignFirstResponder()
+            alamoLogin()
+        }
         return true
     }
 
@@ -169,7 +184,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.txtPass?.resignFirstResponder()
         self.txtUser?.resignFirstResponder()
     }
-    
+    //MARK: Signal
     private func setupSignalSubscription() {
         Messages.postRequestFailed.subscribe(with: self) { [weak self] statusCode in
             if statusCode == 401 {
@@ -181,7 +196,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
     }
-    
+    //MARK: TextField Begin/End Editing funcs
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let user = txtUser, user.isEditing {
             emailBottomView?.backgroundColor = .blue
@@ -209,15 +224,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         }
     }
-    
+    //Mark: TextView properties (for making HyperLink txtview)
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         return false
     }
-    
+    // Interact w/ URL
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         return true
     }
     
+    //Remove Navigation Bar Shadow for Login Scene
     func removeNavBarShadow() {
         
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -244,9 +260,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     
                     let myVC = self.storyboard?.instantiateViewController(withIdentifier: "DriverTableViewController") as! DriverTableViewController
                     myVC.token = self.token
-                    self.navigationController?.pushViewController(myVC, animated: true)
+                    self.navigationController?.pushViewController(myVC, animated: true) // Alamo -> Async
                 }
-//                self.openNextController()
+//               Alamo -> Async -> No need for -> self.openNextController()
                 
 
                 
@@ -268,7 +284,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
     }
-    
+    // read user input for login
     func readCredentials () -> [String: Any] {
  
         var credentials = [String: Any]()
@@ -292,7 +308,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
         return credentials
     }
-    
+    // URL REQ + JSON default way
     func deprecatedLogin() {
         
         var user = ""
@@ -371,8 +387,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    //---------------------------------
+    // MARK: - Notification Center
+    //---------------------------------
+
+    //Scroll View - on Keyboard appear
+    @objc func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+    }
+    // Scroll View disappear w/ Keyboard
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInset
+    }
+    
 }
 
+//MARK: Extensions
+// enable UICOLOR(rgb: 0x)
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
