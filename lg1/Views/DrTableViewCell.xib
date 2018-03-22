@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Calibre-Bold.otf">
+            <string>Calibre-Bold</string>
+        </array>
+        <array key="Calibre-Thin.otf">
+            <string>Calibre-Thin</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrTableViewCell" rowHeight="66" id="Bq2-lC-YYd" customClass="DriverTableViewCell" customModule="lg1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bq2-lC-YYd" id="RNz-zM-CVA">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-Td-OH0">
+                        <rect key="frame" x="65" y="23" width="278" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="W85-Mh-wSx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Calibre-Bold" family="Calibre" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-circle" translatesAutoresizingMaskIntoConstraints="NO" id="yyN-yw-OdA">
+                        <rect key="frame" x="17" y="16" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Act-PO-067"/>
+                            <constraint firstAttribute="width" constant="45" id="zid-ZL-UN0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC3-IO-My6">
+                        <rect key="frame" x="65" y="39" width="244" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="44H-fM-gcR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Calibre-Thin" family="Calibre" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Okm-W2-6xb">
+                        <rect key="frame" x="27" y="25" width="21" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="i47-SF-OTx"/>
+                            <constraint firstAttribute="height" constant="25" id="o2J-nT-FEO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="d5f-1q-Geo">
+                        <rect key="frame" x="344" y="25" width="28" height="24"/>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Iri-PP-Kpc"/>
+                            <constraint firstAttribute="width" constant="28" id="rIm-3J-CSG"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HUS-Td-OH0" firstAttribute="leading" secondItem="yyN-yw-OdA" secondAttribute="trailing" constant="3" id="0ze-Sk-cfL"/>
+                    <constraint firstItem="yyN-yw-OdA" firstAttribute="leading" secondItem="RNz-zM-CVA" secondAttribute="leading" constant="17" id="5t8-yo-9j0"/>
+                    <constraint firstAttribute="trailing" secondItem="HUS-Td-OH0" secondAttribute="trailing" constant="32" id="6he-Zb-eVf"/>
+                    <constraint firstItem="yyN-yw-OdA" firstAttribute="top" secondItem="RNz-zM-CVA" secondAttribute="top" constant="16" id="7wb-ca-eau"/>
+                    <constraint firstAttribute="trailing" secondItem="d5f-1q-Geo" secondAttribute="trailing" constant="3" id="E1t-1S-Vgf"/>
+                    <constraint firstItem="LC3-IO-My6" firstAttribute="top" secondItem="HUS-Td-OH0" secondAttribute="bottom" id="LiX-Rp-bKQ"/>
+                    <constraint firstItem="LC3-IO-My6" firstAttribute="leading" secondItem="yyN-yw-OdA" secondAttribute="trailing" constant="3" id="QAb-NR-RGK"/>
+                    <constraint firstItem="HUS-Td-OH0" firstAttribute="top" secondItem="RNz-zM-CVA" secondAttribute="top" constant="23" id="RtU-1V-y8G"/>
+                    <constraint firstItem="yyN-yw-OdA" firstAttribute="leading" secondItem="Okm-W2-6xb" secondAttribute="trailing" constant="-31" id="WUp-bM-TuR"/>
+                    <constraint firstItem="yyN-yw-OdA" firstAttribute="top" secondItem="Okm-W2-6xb" secondAttribute="bottom" constant="-34" id="ajQ-d6-zzi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LC3-IO-My6" secondAttribute="trailing" constant="50" id="ekE-io-kXf"/>
+                    <constraint firstItem="d5f-1q-Geo" firstAttribute="top" secondItem="RNz-zM-CVA" secondAttribute="top" constant="25" id="ywd-rE-lPe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="arrowImg" destination="d5f-1q-Geo" id="qwk-Qo-h6N"/>
+                <outlet property="labelIme" destination="HUS-Td-OH0" id="DhP-Ol-F7d"/>
+                <outlet property="nameLetterLbl" destination="Okm-W2-6xb" id="tuV-b2-scm"/>
+                <outlet property="roleLbl" destination="LC3-IO-My6" id="sHf-Bv-9Rd"/>
+            </connections>
+            <point key="canvasLocation" x="-6.5" y="8"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="avatar-circle" width="800" height="800"/>
+        <image name="forward-arrow" width="24" height="24"/>
+    </resources>
+</document>

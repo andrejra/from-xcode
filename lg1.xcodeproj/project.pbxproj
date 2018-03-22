@@ -9,16 +9,15 @@
 /* Begin PBXBuildFile section */
 		D20126622046FFEF00BF82B9 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20126612046FFEF00BF82B9 /* Messages.swift */; };
 		D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21CA527203B233D0089EF42 /* AppDelegate.swift */; };
-		D21CA52A203B233D0089EF42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21CA529203B233D0089EF42 /* LoginViewController.swift */; };
-		D21CA52D203B233D0089EF42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D21CA52B203B233D0089EF42 /* Main.storyboard */; };
 		D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D21CA52E203B233D0089EF42 /* lg1.xcdatamodeld */; };
+		D2282FA22062B61F0090327A /* DrTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2282FA02062B61F0090327A /* DrTableViewCell.xib */; };
 		D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */; };
 		D23AA504204D4CE400D68BC7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23AA503204D4CE400D68BC7 /* Media.xcassets */; };
-		D26DDB31203D902300A7F99D /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB30203D902300A7F99D /* DriverTableViewController.swift */; };
 		D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB32203DAA8000A7F99D /* Vozac.swift */; };
-		D26DDB35203DAD9400A7F99D /* AddDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB34203DAD9400A7F99D /* AddDriverViewController.swift */; };
-		D26DDB37203DC9C000A7F99D /* SelectedDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB36203DC9C000A7F99D /* SelectedDriverViewController.swift */; };
-		D2D765F820499141000A8C1A /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D765F720499141000A8C1A /* CustomView.swift */; };
+		D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */; };
+		D29781D32057E4D800A8DB62 /* DriverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */; };
+		D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5E1E02056B865001A91DE /* LoginViewController.swift */; };
+		D2A5E1E32056B865001A91DE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5E1E12056B865001A91DE /* LoginViewController.xib */; };
 		D2DF5B7B204D4E8B00F1A967 /* Calibre-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B71204D4E8B00F1A967 /* Calibre-Light.otf */; };
 		D2DF5B7C204D4E8B00F1A967 /* Calibre-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B72204D4E8B00F1A967 /* Calibre-MediumItalic.otf */; };
 		D2DF5B7D204D4E8B00F1A967 /* Calibre-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B73204D4E8B00F1A967 /* Calibre-BoldItalic.otf */; };
@@ -29,7 +28,6 @@
 		D2DF5B82204D4E8B00F1A967 /* Calibre-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B78204D4E8B00F1A967 /* Calibre-Medium.otf */; };
 		D2DF5B83204D4E8B00F1A967 /* Calibre-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B79204D4E8B00F1A967 /* Calibre-RegularItalic.otf */; };
 		D2DF5B84204D4E8B00F1A967 /* Calibre-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B7A204D4E8B00F1A967 /* Calibre-Regular.otf */; };
-		D2DF5B87204D7F4D00F1A967 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DF5B86204D7F4D00F1A967 /* StringUtils.swift */; };
 		EE10687F05E6C8E2B7F37288 /* Pods_lg1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0813321016FF93A2CEEA15D9 /* Pods_lg1.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,17 +38,16 @@
 		D20126612046FFEF00BF82B9 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		D21CA524203B233D0089EF42 /* lg1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lg1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21CA527203B233D0089EF42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D21CA529203B233D0089EF42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D21CA52C203B233D0089EF42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D21CA52F203B233D0089EF42 /* lg1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = lg1.xcdatamodel; sourceTree = "<group>"; };
 		D21CA536203B233D0089EF42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2282FA02062B61F0090327A /* DrTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrTableViewCell.xib; sourceTree = "<group>"; };
 		D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewCell.swift; sourceTree = "<group>"; };
 		D23AA503204D4CE400D68BC7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		D26DDB30203D902300A7F99D /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
 		D26DDB32203DAA8000A7F99D /* Vozac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vozac.swift; sourceTree = "<group>"; };
-		D26DDB34203DAD9400A7F99D /* AddDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriverViewController.swift; sourceTree = "<group>"; };
-		D26DDB36203DC9C000A7F99D /* SelectedDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDriverViewController.swift; sourceTree = "<group>"; };
-		D2D765F720499141000A8C1A /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
+		D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverTableViewController.xib; sourceTree = "<group>"; };
+		D2A5E1E02056B865001A91DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D2A5E1E12056B865001A91DE /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		D2DF5B71204D4E8B00F1A967 /* Calibre-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-Light.otf"; sourceTree = "<group>"; };
 		D2DF5B72204D4E8B00F1A967 /* Calibre-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-MediumItalic.otf"; sourceTree = "<group>"; };
 		D2DF5B73204D4E8B00F1A967 /* Calibre-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -61,7 +58,6 @@
 		D2DF5B78204D4E8B00F1A967 /* Calibre-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-Medium.otf"; sourceTree = "<group>"; };
 		D2DF5B79204D4E8B00F1A967 /* Calibre-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-RegularItalic.otf"; sourceTree = "<group>"; };
 		D2DF5B7A204D4E8B00F1A967 /* Calibre-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-Regular.otf"; sourceTree = "<group>"; };
-		D2DF5B86204D7F4D00F1A967 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +109,10 @@
 		D21CA526203B233D0089EF42 /* lg1 */ = {
 			isa = PBXGroup;
 			children = (
-				D2DF5B85204D7F3700F1A967 /* Utils */,
 				D20126602046FFD900BF82B9 /* Signals */,
-				D21CA53F203B2E570089EF42 /* Storyboard */,
-				D21CA53E203B2E470089EF42 /* ViewControllers */,
+				D2334F5220625FF600A30E07 /* xib ViewControllers */,
 				D26DDB38203DD11900A7F99D /* Model */,
+				D29781D82057FF5700A8DB62 /* Views */,
 				D2DF5B70204D4E8B00F1A967 /* Fonts */,
 				D21CA527203B233D0089EF42 /* AppDelegate.swift */,
 				D21CA536203B233D0089EF42 /* Info.plist */,
@@ -127,33 +122,32 @@
 			path = lg1;
 			sourceTree = "<group>";
 		};
-		D21CA53E203B2E470089EF42 /* ViewControllers */ = {
+		D2334F5220625FF600A30E07 /* xib ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D21CA529203B233D0089EF42 /* LoginViewController.swift */,
-				D26DDB30203D902300A7F99D /* DriverTableViewController.swift */,
-				D26DDB34203DAD9400A7F99D /* AddDriverViewController.swift */,
-				D26DDB36203DC9C000A7F99D /* SelectedDriverViewController.swift */,
-				D2D765F720499141000A8C1A /* CustomView.swift */,
+				D2A5E1E02056B865001A91DE /* LoginViewController.swift */,
+				D2A5E1E12056B865001A91DE /* LoginViewController.xib */,
+				D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */,
+				D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */,
 			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		D21CA53F203B2E570089EF42 /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				D21CA52B203B233D0089EF42 /* Main.storyboard */,
-			);
-			path = Storyboard;
+			path = "xib ViewControllers";
 			sourceTree = "<group>";
 		};
 		D26DDB38203DD11900A7F99D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */,
 				D26DDB32203DAA8000A7F99D /* Vozac.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D29781D82057FF5700A8DB62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */,
+				D2282FA02062B61F0090327A /* DrTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D2DF5B70204D4E8B00F1A967 /* Fonts */ = {
@@ -171,14 +165,6 @@
 				D2DF5B7A204D4E8B00F1A967 /* Calibre-Regular.otf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		D2DF5B85204D7F3700F1A967 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				D2DF5B86204D7F4D00F1A967 /* StringUtils.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		EFDC032ECB14FDF67ABAC227 /* Pods */ = {
@@ -254,16 +240,18 @@
 			files = (
 				D2DF5B7B204D4E8B00F1A967 /* Calibre-Light.otf in Resources */,
 				D2DF5B7C204D4E8B00F1A967 /* Calibre-MediumItalic.otf in Resources */,
+				D2A5E1E32056B865001A91DE /* LoginViewController.xib in Resources */,
 				D2DF5B81204D4E8B00F1A967 /* Calibre-Thin.otf in Resources */,
 				D2DF5B82204D4E8B00F1A967 /* Calibre-Medium.otf in Resources */,
 				D2DF5B7F204D4E8B00F1A967 /* Calibre-ThinItalic.otf in Resources */,
-				D21CA52D203B233D0089EF42 /* Main.storyboard in Resources */,
 				D2DF5B7D204D4E8B00F1A967 /* Calibre-BoldItalic.otf in Resources */,
+				D29781D32057E4D800A8DB62 /* DriverTableViewController.xib in Resources */,
 				D2DF5B83204D4E8B00F1A967 /* Calibre-RegularItalic.otf in Resources */,
 				D23AA504204D4CE400D68BC7 /* Media.xcassets in Resources */,
 				D2DF5B7E204D4E8B00F1A967 /* Calibre-LightItalic.otf in Resources */,
 				D2DF5B80204D4E8B00F1A967 /* Calibre-Bold.otf in Resources */,
 				D2DF5B84204D4E8B00F1A967 /* Calibre-Regular.otf in Resources */,
+				D2282FA22062B61F0090327A /* DrTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,30 +324,15 @@
 			files = (
 				D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */,
 				D20126622046FFEF00BF82B9 /* Messages.swift in Sources */,
+				D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */,
 				D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */,
-				D26DDB35203DAD9400A7F99D /* AddDriverViewController.swift in Sources */,
 				D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */,
-				D2D765F820499141000A8C1A /* CustomView.swift in Sources */,
-				D26DDB31203D902300A7F99D /* DriverTableViewController.swift in Sources */,
-				D21CA52A203B233D0089EF42 /* LoginViewController.swift in Sources */,
-				D2DF5B87204D7F4D00F1A967 /* StringUtils.swift in Sources */,
+				D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */,
 				D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */,
-				D26DDB37203DC9C000A7F99D /* SelectedDriverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D21CA52B203B233D0089EF42 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D21CA52C203B233D0089EF42 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D21CA537203B233D0089EF42 /* Debug */ = {

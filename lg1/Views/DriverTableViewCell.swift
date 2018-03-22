@@ -12,12 +12,13 @@ class DriverTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelIme: UILabel!
     @IBOutlet weak var roleLbl: UILabel!
-    @IBOutlet weak var firstNameLetterLbl: UILabel!
-    @IBOutlet weak var lastNameLetterLbl: UILabel!
+    @IBOutlet weak var nameLetterLbl: UILabel!
+    @IBOutlet weak var arrowImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        arrowImg.tintColor = UIColor.lightGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,14 +30,14 @@ class DriverTableViewCell: UITableViewCell {
     func setDriverCell (driver: Vozac) {
         var ime = ""
         var prezime = ""
-        if let firstName = driver.ime{
-            firstNameLetterLbl.text = String(firstName.prefix(1))
-            ime = firstName
-        }
         
-        if let lastName = driver.prezime {
-            lastNameLetterLbl.text = String(lastName.prefix(1))
-            prezime = lastName
+        if let firstName = driver.ime{
+            
+            if let lastName = driver.prezime {
+                nameLetterLbl.text = String(firstName.prefix(1)) + String(lastName.prefix(1))
+                prezime = lastName
+                ime = firstName
+            }
         }
         
         if let role = driver.roles {
