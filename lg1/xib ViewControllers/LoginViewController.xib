@@ -19,7 +19,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="xibLoginViewController" customModule="lg1" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="lg1" customModuleProvider="target">
             <connections>
                 <outlet property="emailBottomView" destination="xsG-jn-UWn" id="9bt-Cl-hb5"/>
                 <outlet property="emailTopHiddenLbl" destination="suK-7A-whN" id="dle-bg-8pi"/>
@@ -70,7 +70,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username or Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suK-7A-whN">
-                                    <rect key="frame" x="37" y="74" width="156" height="17"/>
+                                    <rect key="frame" x="37" y="74" width="220" height="17"/>
                                     <fontDescription key="fontDescription" name="Calibre-Regular" family="Calibre" pointSize="17"/>
                                     <color key="textColor" red="0.059203177689999997" green="0.1276043952" blue="0.33729106190000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -95,7 +95,7 @@
                                     </constraints>
                                 </view>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frM-t4-bCT">
-                                    <rect key="frame" x="37" y="134" width="156" height="17"/>
+                                    <rect key="frame" x="37" y="134" width="220" height="17"/>
                                     <fontDescription key="fontDescription" name="Calibre-Regular" family="Calibre" pointSize="17"/>
                                     <color key="textColor" red="0.059203177689999997" green="0.1276043952" blue="0.33729106190000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -224,7 +224,7 @@
                                 <constraint firstItem="08C-Yn-omu" firstAttribute="trailing" secondItem="NJi-Zc-wmI" secondAttribute="trailing" id="qQS-mJ-kiH"/>
                                 <constraint firstItem="frM-t4-bCT" firstAttribute="leading" secondItem="suK-7A-whN" secondAttribute="leading" id="qRy-FR-1kO"/>
                                 <constraint firstItem="Yo7-WB-S0c" firstAttribute="leading" secondItem="QUa-xe-yIz" secondAttribute="leading" constant="40" id="qVp-NO-xY4"/>
-                                <constraint firstAttribute="trailing" secondItem="suK-7A-whN" secondAttribute="trailing" constant="182" id="qhj-db-cHZ"/>
+                                <constraint firstAttribute="trailing" secondItem="suK-7A-whN" secondAttribute="trailing" constant="118" id="qhj-db-cHZ"/>
                                 <constraint firstItem="frM-t4-bCT" firstAttribute="top" secondItem="xsG-jn-UWn" secondAttribute="bottom" constant="15" id="rfL-hC-MFM"/>
                                 <constraint firstItem="08C-Yn-omu" firstAttribute="leading" secondItem="NJi-Zc-wmI" secondAttribute="leading" id="vgF-14-369"/>
                                 <constraint firstItem="ikZ-A4-9Lx" firstAttribute="leading" secondItem="eTh-hE-Dgf" secondAttribute="leading" id="xlK-Lp-PDR"/>
@@ -256,7 +256,7 @@
                 <constraint firstItem="RkF-qY-2Y6" firstAttribute="top" secondItem="tbP-cq-22G" secondAttribute="top" id="xWn-gK-6K0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="OmG-zT-QuL"/>
-            <point key="canvasLocation" x="30" y="319"/>
+            <point key="canvasLocation" x="29.5" y="318.5"/>
         </view>
         <tapGestureRecognizer id="4xg-Kc-NI9">
             <connections>

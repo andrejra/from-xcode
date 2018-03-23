@@ -14,6 +14,8 @@
 		D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */; };
 		D23AA504204D4CE400D68BC7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23AA503204D4CE400D68BC7 /* Media.xcassets */; };
 		D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB32203DAA8000A7F99D /* Vozac.swift */; };
+		D295547E2063F0620009BA17 /* CreateDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D295547C2063F0620009BA17 /* CreateDriverViewController.swift */; };
+		D295547F2063F0620009BA17 /* CreateDriverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D295547D2063F0620009BA17 /* CreateDriverViewController.xib */; };
 		D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */; };
 		D29781D32057E4D800A8DB62 /* DriverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */; };
 		D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5E1E02056B865001A91DE /* LoginViewController.swift */; };
@@ -44,6 +46,8 @@
 		D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewCell.swift; sourceTree = "<group>"; };
 		D23AA503204D4CE400D68BC7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		D26DDB32203DAA8000A7F99D /* Vozac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vozac.swift; sourceTree = "<group>"; };
+		D295547C2063F0620009BA17 /* CreateDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverViewController.swift; sourceTree = "<group>"; };
+		D295547D2063F0620009BA17 /* CreateDriverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDriverViewController.xib; sourceTree = "<group>"; };
 		D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
 		D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverTableViewController.xib; sourceTree = "<group>"; };
 		D2A5E1E02056B865001A91DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				D2A5E1E12056B865001A91DE /* LoginViewController.xib */,
 				D29781D02057E4D800A8DB62 /* DriverTableViewController.swift */,
 				D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */,
+				D295547C2063F0620009BA17 /* CreateDriverViewController.swift */,
+				D295547D2063F0620009BA17 /* CreateDriverViewController.xib */,
 			);
 			path = "xib ViewControllers";
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			files = (
 				D2DF5B7B204D4E8B00F1A967 /* Calibre-Light.otf in Resources */,
 				D2DF5B7C204D4E8B00F1A967 /* Calibre-MediumItalic.otf in Resources */,
+				D295547F2063F0620009BA17 /* CreateDriverViewController.xib in Resources */,
 				D2A5E1E32056B865001A91DE /* LoginViewController.xib in Resources */,
 				D2DF5B81204D4E8B00F1A967 /* Calibre-Thin.otf in Resources */,
 				D2DF5B82204D4E8B00F1A967 /* Calibre-Medium.otf in Resources */,
@@ -326,6 +333,7 @@
 				D20126622046FFEF00BF82B9 /* Messages.swift in Sources */,
 				D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */,
 				D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */,
+				D295547E2063F0620009BA17 /* CreateDriverViewController.swift in Sources */,
 				D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */,
 				D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */,
 				D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */,

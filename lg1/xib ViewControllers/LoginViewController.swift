@@ -16,8 +16,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 
 
     var token = ""
-    let userPlaceholder = "Username or Email"
-    let passPlaceholder = "Password"
     let fr8hubBlue = UIColor(red: 15.0/255.0, green: 33.0/255.0, blue: 86.0/255.0, alpha: 1.0)
 //    let fr8hubOrange = UIColor(red: 188.0/255.0, green: 111.0/255.0, blue: 48.0/255.0, alpha: 1.0)
     @IBOutlet weak var txtUser: UITextField?
@@ -46,8 +44,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         loginBtnLabel.layer.borderWidth = 1
         
         //Text Fields -> Custom Placeholder
-        txtUser?.attributedPlaceholder = NSAttributedString(string: userPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtUser?.attributedPlaceholder = NSAttributedString(string: "Username or Email", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtPass?.attributedPlaceholder = NSAttributedString(string: "passPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         
         //Text View Edit -> SEE MARK:
         performLinkMaker()
@@ -207,13 +205,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         if let user = txtUser, !user.isEditing {
             emailBottomView?.backgroundColor = .gray
             emailTopHiddenLbl.isHidden = true
-            txtUser?.attributedPlaceholder = NSAttributedString(string: userPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+            txtUser?.attributedPlaceholder = NSAttributedString(string: "userPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
             
         }
         if let pass = txtPass, !pass.isEditing {
             passwordBottomView?.backgroundColor = .gray
             passTopHiddenLbl.isHidden = true
-            txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+            txtPass?.placeholder = "Password"
+//            txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         }
     }
     //Mark: TextView properties (for making HyperLink txtview)

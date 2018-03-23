@@ -24,7 +24,7 @@ class DriverTableViewController: UITableViewController {
         self.title = "Users"
         setBarButtons()
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: fr8hubBlue, NSAttributedStringKey.font: UIFont(name:"Calibre-Bold", size: 20)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: fr8hubBlue, NSAttributedStringKey.font: UIFont(name:"Calibre-Bold", size: 19)!]
         navigationController?.navigationBar.tintColor = fr8hubBlue
     }
     
@@ -77,7 +77,7 @@ class DriverTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let selectedDriver = drivers[row]
-        
+        pushEditDriveVC(driver: selectedDriver)
     }
     
     @IBAction func btnLogOut(_ sender: UIBarButtonItem) {
@@ -152,7 +152,7 @@ class DriverTableViewController: UITableViewController {
         let item1 = UIBarButtonItem(customView: btn1)
         
         let btn2 = UIButton(type: .custom)
-        btn2.setImage(UIImage(named: "remove"), for: .normal)
+        btn2.setImage(UIImage(named: "remove-driver"), for: .normal)
         btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         btn2.addTarget(self, action: #selector(self.editBtn(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
@@ -160,7 +160,7 @@ class DriverTableViewController: UITableViewController {
         let btn3 = UIButton(type: .custom)
         btn3.setImage(UIImage(named: "add-driver"), for: .normal)
         btn3.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn3.addTarget(self, action: #selector(self.addDriverSegue(_:)), for: .touchUpInside)
+        btn3.addTarget(self, action: #selector(pushCreateDriverVC), for: .touchUpInside)
         let item3 = UIBarButtonItem(customView: btn3)
         
         
@@ -169,7 +169,18 @@ class DriverTableViewController: UITableViewController {
         self.navigationItem.setLeftBarButtonItems([item1,item2], animated: true)
         
     }
-    @objc func addDriverSegue(_ sender: Any) {
-        
+
+    @objc func pushCreateDriverVC(){ //zasto @objc
+        let vc = CreateDriverViewController(
+            nibName: "CreateDriverViewController",
+            bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func pushEditDriveVC(driver: Vozac) {
+        let vc = CreateDriverViewController(
+            nibName: "CreateDriverViewController",
+            bundle: nil)
+        vc.driver = driver
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
