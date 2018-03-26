@@ -19,21 +19,24 @@ class DriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //registering XIB CELL
         tableView.register(UINib.init(nibName: "DrTableViewCell", bundle: nil), forCellReuseIdentifier: "DrTableViewCell")
         
+        //Setting up Nav Bar & Bar Items
         self.title = "Users"
         setBarButtons()
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: fr8hubBlue, NSAttributedStringKey.font: UIFont(name:"Calibre-Bold", size: 19)!]
         navigationController?.navigationBar.tintColor = fr8hubBlue
+        setNavBarShadow()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //Load drivers to the table every time view is presented
         getDrivers()
-        setNavBarShadow()
     }
-    
+        //Set status bar back to dark
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -59,7 +62,7 @@ class DriverTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
+    //Allow editing - remove cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
@@ -68,16 +71,20 @@ class DriverTableViewController: UITableViewController {
             
         }
     }
-    
+    //Allow Editing
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
+    //Selected cell - > Next VC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let selectedDriver = drivers[row]
         pushEditDriveVC(driver: selectedDriver)
+    }
+    
+    @IBAction func editBtn(_ sender: UIBarButtonItem) {
+        setEditing(!isEditing, animated: true)
     }
     
     @IBAction func btnLogOut(_ sender: UIBarButtonItem) {
@@ -96,15 +103,6 @@ class DriverTableViewController: UITableViewController {
                 print(error)
             }
         }
-    }
-    
-    
-    @IBAction func editBtn(_ sender: UIBarButtonItem) {
-        setEditing(!isEditing, animated: true)
-    }
-    
-    func popVC(){
-            self.navigationController?.popViewController(animated: true)
     }
     
     func getDrivers(){
@@ -182,5 +180,9 @@ class DriverTableViewController: UITableViewController {
             bundle: nil)
         vc.driver = driver
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func popVC(){
+        self.navigationController?.popViewController(animated: true)
     }
 }

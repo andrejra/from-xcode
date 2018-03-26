@@ -11,7 +11,7 @@ import Alamofire_SwiftyJSON
 
 class CreateDriverViewController: UIViewController {
 
-    @IBOutlet weak var countryPicker: UIPickerView!
+    @IBOutlet weak var countryPrefixTxt: UITextField!
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var phoneBottomView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -34,8 +34,6 @@ class CreateDriverViewController: UIViewController {
     @IBOutlet weak var chkboxAccountant: CheckBoxButton!
     @IBOutlet weak var chkboxDispatcher: CheckBoxButton!
     
-    let checkedBox = UIImage(named: "checked-box")
-    let nonCheckedBox = UIImage(named: "empty-checkbox")
     let countries = ["USA", "MEX"]
     var selectedCountry: String?
     var driver: Vozac?
@@ -66,6 +64,7 @@ class CreateDriverViewController: UIViewController {
         
         createTxtFieldDelegate()
         setUpPickerView()
+        createToolbar()
         formatButton()
         formatTxtPlaceholder()
         extendScrollViewObservers()
@@ -78,8 +77,24 @@ class CreateDriverViewController: UIViewController {
     }
     
     func setUpPickerView(){
-        self.countryPicker.dataSource = self
-        self.countryPicker.delegate = self
+        let countryPick = UIPickerView()
+        countryPick.delegate = self
+        countryPrefixTxt.inputView = countryPick
+     
+    }
+    
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        
+        countryPrefixTxt.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func formatButton() {
@@ -170,16 +185,16 @@ class CreateDriverViewController: UIViewController {
             for r in selectedDriver.roles! {
                 switch r {
                 case "driver": roles["driver"] = true
-                    chkboxDriver.setImage(checkedBox, for: .normal)
+                    chkboxDriver.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
                     chkboxDriver.isON = true
                 case "accountant": roles["accountant"] = true
-                    chkboxAccountant.setImage(checkedBox, for: .normal)
+                    chkboxAccountant.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
                     chkboxAccountant.isON = true
                 case "dispatcher": roles["dispatcher"] = true
-                    chkboxDispatcher.setImage(checkedBox, for: .normal)
+                    chkboxDispatcher.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
                     chkboxDispatcher.isON = true
                 case "admin": roles["admin"] = true
-                    chkboxAdmin.setImage(checkedBox, for: .normal)
+                    chkboxAdmin.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
                     chkboxAdmin.isON = true
                 default:
                     break
@@ -197,9 +212,8 @@ class CreateDriverViewController: UIViewController {
         case 4: roles["dispatcher"] = selected
         default: print("error selecting")
         }
-
+        
     }
-    
 }
 
 extension CreateDriverViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -214,6 +228,7 @@ extension CreateDriverViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCountry = countries[row]
+        countryPrefixTxt.text = selectedCountry
     }
 }
 
