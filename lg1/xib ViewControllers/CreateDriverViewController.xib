@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Calibre-Bold.otf">
+            <string>Calibre-Bold</string>
+        </array>
         <array key="Calibre-Light.otf">
             <string>Calibre-Light</string>
         </array>
@@ -21,10 +24,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateDriverViewController" customModule="lg1" customModuleProvider="target">
             <connections>
                 <outlet property="btnSave" destination="JAp-hK-wAf" id="YiE-Yn-jCr"/>
-                <outlet property="chkboxAccountant" destination="JR3-rS-rCh" id="WoQ-xi-nFh"/>
-                <outlet property="chkboxAdmin" destination="TUo-xG-W2i" id="DXq-jw-h7p"/>
-                <outlet property="chkboxDispatcher" destination="lYI-y1-ZgK" id="u1K-88-cfu"/>
-                <outlet property="chkboxDriver" destination="EYX-0F-AVn" id="Flv-gE-M5L"/>
+                <outlet property="chkboxAccountant" destination="H0L-M1-dlp" id="kjx-vh-PGz"/>
+                <outlet property="chkboxAdmin" destination="FrD-h5-5ug" id="Uu9-Qp-agA"/>
+                <outlet property="chkboxDispatcher" destination="bVL-aF-C1o" id="Efp-Q9-HOX"/>
+                <outlet property="chkboxDriver" destination="w1h-4T-dW6" id="aca-wh-Kh1"/>
                 <outlet property="confirmPasswordBottomView" destination="ySI-bw-dEp" id="FZS-Lt-oxb"/>
                 <outlet property="countryPicker" destination="dP4-Fk-fGS" id="r5c-ef-pM3"/>
                 <outlet property="emailNameBottomView" destination="Efl-kN-UaI" id="zaB-hC-2H5"/>
@@ -63,10 +66,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="EYX-0F-AVn" userLabel="Driver Checkbox">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1h-4T-dW6" userLabel="Checkbox Driver" customClass="CheckBoxButton" customModule="lg1" customModuleProvider="target">
                                     <rect key="frame" x="23" y="83" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIP-Fd-R9i">
                                     <rect key="frame" x="58" y="85" width="81" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -74,10 +78,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="TUo-xG-W2i" userLabel="Admin Checkbox">
-                                    <rect key="frame" x="182" y="83" width="25" height="25"/>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrD-h5-5ug" userLabel="Checkbox Admin" customClass="CheckBoxButton" customModule="lg1" customModuleProvider="target">
+                                    <rect key="frame" x="184" y="83" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Admin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7U-n8-N3K">
                                     <rect key="frame" x="217" y="85" width="82" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -85,10 +90,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="JR3-rS-rCh" userLabel="Accountant Checkbox">
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-M1-dlp" userLabel="Checkbox Accountant" customClass="CheckBoxButton" customModule="lg1" customModuleProvider="target">
                                     <rect key="frame" x="23" y="146" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accountant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYz-wM-v3P">
                                     <rect key="frame" x="58" y="148" width="81" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -96,10 +102,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="lYI-y1-ZgK" userLabel="Dispatcher Checkbox">
-                                    <rect key="frame" x="182" y="146" width="25" height="25"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVL-aF-C1o" userLabel="Checkbox Dispatcher" customClass="CheckBoxButton" customModule="lg1" customModuleProvider="target">
+                                    <rect key="frame" x="184" y="146" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dispatcher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6T-qx-d5s">
                                     <rect key="frame" x="217" y="150" width="82" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,7 +172,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zP2-1f-aEl">
                                     <rect key="frame" x="23" y="522" width="268" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" textContentType="email"/>
                                 </textField>
@@ -235,8 +242,8 @@
                                     <rect key="frame" x="23" y="871" width="268" height="43"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <fontDescription key="fontDescription" name="Calibre-Regular" family="Calibre" pointSize="17"/>
-                                    <state key="normal" title="Button">
+                                    <fontDescription key="fontDescription" name="Calibre-Bold" family="Calibre" pointSize="17"/>
+                                    <state key="normal" title="Save">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
@@ -268,7 +275,4 @@
             <point key="canvasLocation" x="34" y="290.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="empty-checkbox" width="24" height="24"/>
-    </resources>
 </document>

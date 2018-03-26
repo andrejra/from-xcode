@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D20126622046FFEF00BF82B9 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20126612046FFEF00BF82B9 /* Messages.swift */; };
+		D21A41712068F7A300CFFA9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21A41702068F7A300CFFA9C /* Constants.swift */; };
+		D21A41732068F88500CFFA9C /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21A41722068F88500CFFA9C /* CheckBoxButton.swift */; };
 		D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21CA527203B233D0089EF42 /* AppDelegate.swift */; };
 		D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D21CA52E203B233D0089EF42 /* lg1.xcdatamodeld */; };
 		D2282FA22062B61F0090327A /* DrTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2282FA02062B61F0090327A /* DrTableViewCell.xib */; };
@@ -38,6 +40,8 @@
 		73A90E7D223BFB9AC24A3BFD /* Pods-lg1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lg1.release.xcconfig"; path = "Pods/Target Support Files/Pods-lg1/Pods-lg1.release.xcconfig"; sourceTree = "<group>"; };
 		B285772E02DE99863C9F61BD /* Pods-lg1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lg1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lg1/Pods-lg1.debug.xcconfig"; sourceTree = "<group>"; };
 		D20126612046FFEF00BF82B9 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		D21A41702068F7A300CFFA9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D21A41722068F88500CFFA9C /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		D21CA524203B233D0089EF42 /* lg1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lg1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21CA527203B233D0089EF42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D21CA52F203B233D0089EF42 /* lg1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = lg1.xcdatamodel; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			path = Signals;
 			sourceTree = "<group>";
 		};
+		D21A416F2068F78A00CFFA9C /* Abstraction */ = {
+			isa = PBXGroup;
+			children = (
+				D21A41702068F7A300CFFA9C /* Constants.swift */,
+			);
+			path = Abstraction;
+			sourceTree = "<group>";
+		};
 		D21CA51B203B233D0089EF42 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 		D21CA526203B233D0089EF42 /* lg1 */ = {
 			isa = PBXGroup;
 			children = (
+				D21A416F2068F78A00CFFA9C /* Abstraction */,
 				D20126602046FFD900BF82B9 /* Signals */,
 				D2334F5220625FF600A30E07 /* xib ViewControllers */,
 				D26DDB38203DD11900A7F99D /* Model */,
@@ -152,6 +165,7 @@
 			children = (
 				D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */,
 				D2282FA02062B61F0090327A /* DrTableViewCell.xib */,
+				D21A41722068F88500CFFA9C /* CheckBoxButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D21A41732068F88500CFFA9C /* CheckBoxButton.swift in Sources */,
 				D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */,
 				D20126622046FFEF00BF82B9 /* Messages.swift in Sources */,
 				D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */,
@@ -337,6 +352,7 @@
 				D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */,
 				D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */,
 				D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */,
+				D21A41712068F7A300CFFA9C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,10 +15,6 @@ class CreateDriverViewController: UIViewController {
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var phoneBottomView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var chkboxDriver: UIImageView!
-    @IBOutlet weak var chkboxAdmin: UIImageView!
-    @IBOutlet weak var chkboxAccountant: UIImageView!
-    @IBOutlet weak var chkboxDispatcher: UIImageView!
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var firstNameBottomView: UIView!
     @IBOutlet weak var txtLastName: UITextField!
@@ -33,11 +29,19 @@ class CreateDriverViewController: UIViewController {
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var confirmPasswordBottomView: UIView!
     @IBOutlet weak var btnSave: UIButton!
+    @IBOutlet weak var chkboxDriver: CheckBoxButton!
+    @IBOutlet weak var chkboxAdmin: CheckBoxButton!
+    @IBOutlet weak var chkboxAccountant: CheckBoxButton!
+    @IBOutlet weak var chkboxDispatcher: CheckBoxButton!
     
-    let fr8hubBlue = UIColor(red: 15.0/255.0, green: 33.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+    let checkedBox = UIImage(named: "checked-box")
+    let nonCheckedBox = UIImage(named: "empty-checkbox")
     let countries = ["USA", "MEX"]
     var selectedCountry: String?
     var driver: Vozac?
+    var isUserEditing = false
+    var roles: [String: Bool] = ["driver": false, "admin": false, "accountant": false, "dispatcher": false]
+    
     
 //    override func viewDidLayoutSubviews() {
 //        //TODO: viewDidLayoutSubviews called multiple times
@@ -48,8 +52,17 @@ class CreateDriverViewController: UIViewController {
 //
 //    }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (driver == nil) {
+            self.title = "Create User"
+        }
+        else {
+            isUserEditing = true
+            self.title = "Edit User"
+        }
         
         createTxtFieldDelegate()
         setUpPickerView()
@@ -59,15 +72,10 @@ class CreateDriverViewController: UIViewController {
         setBarButtons()
         populateDriver()
         
-        if (driver == nil) {
-            self.title = "Create User"
+        if isUserEditing {
+            loginDetailsView.isHidden = true
         }
-        else {
-            self.title = "Edit User"
-        }
-
     }
-
     
     func setUpPickerView(){
         self.countryPicker.dataSource = self
@@ -75,9 +83,12 @@ class CreateDriverViewController: UIViewController {
     }
     
     func formatButton() {
-        btnSave.backgroundColor = fr8hubBlue
+        btnSave.backgroundColor = Colors.fr8hubBlue
         btnSave.layer.cornerRadius = 5
         btnSave.layer.borderWidth = 1
+        if isUserEditing {
+            btnSave.setTitle("Update", for: .normal)
+        }
     }
     
     func createTxtFieldDelegate() {
@@ -130,7 +141,7 @@ class CreateDriverViewController: UIViewController {
         let item1 = UIBarButtonItem(customView: btn1)
         self.navigationItem.setLeftBarButton(item1, animated: true)
         
-        if (driver != nil) {
+        if (isUserEditing) {
             let btn2 = UIButton(type: .custom)
             btn2.setImage(UIImage(named: "remove-driver"), for: .normal)
             btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -154,7 +165,39 @@ class CreateDriverViewController: UIViewController {
             txtFirstName.text = selectedDriver.ime
             txtLastName.text = selectedDriver.prezime
             txtEmail.text = selectedDriver.email
+            txtUsername.text = selectedDriver.username
+            
+            for r in selectedDriver.roles! {
+                switch r {
+                case "driver": roles["driver"] = true
+                    chkboxDriver.setImage(checkedBox, for: .normal)
+                    chkboxDriver.isON = true
+                case "accountant": roles["accountant"] = true
+                    chkboxAccountant.setImage(checkedBox, for: .normal)
+                    chkboxAccountant.isON = true
+                case "dispatcher": roles["dispatcher"] = true
+                    chkboxDispatcher.setImage(checkedBox, for: .normal)
+                    chkboxDispatcher.isON = true
+                case "admin": roles["admin"] = true
+                    chkboxAdmin.setImage(checkedBox, for: .normal)
+                    chkboxAdmin.isON = true
+                default:
+                    break
+                }
+            }
         }
+    }
+    
+    func changeRoles(tag: Int, selected: Bool) {
+        
+        switch tag {
+        case 1: roles["driver"] = selected
+        case 2: roles["admin"] = selected
+        case 3: roles["accountant"] = selected
+        case 4: roles["dispatcher"] = selected
+        default: print("error selecting")
+        }
+
     }
     
 }

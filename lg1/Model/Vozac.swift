@@ -13,15 +13,15 @@ class Vozac {
     
     var ime: String?
     var prezime: String?
-    var id: String?
+    var username: String?
     var email: String?
     var phone: String?
     var roles: [String]?
     
-    init(ime: String, prezime: String, email: String, id: String, phone: String, roles: [String]) {
+    init(ime: String, prezime: String, email: String, username: String, phone: String, roles: [String]) {
         self.ime = ime
         self.prezime = prezime
-        self.id = id
+        self.username = username
         self.email = email
         self.phone = phone
         self.roles = roles
@@ -34,8 +34,8 @@ class Vozac {
         if let lastName = jsonDriver["last_name"] as? String{
             prezime = lastName
         }
-        if let jsonID = jsonDriver["id"] as? String{
-            id = jsonID
+        if let jsonUsername = jsonDriver["username"] as? String{
+            username = jsonUsername
         }
         if let jsonEmail = jsonDriver["email"] as? String{
             email = jsonEmail
@@ -55,8 +55,8 @@ class Vozac {
         if let lastName = json["last_name"].string{
             prezime = lastName
         }
-        if let jsonID = json["id"].string{
-            id = jsonID
+        if let jsonUsername = json["username"].string{
+            username = jsonUsername
         }
         if let jsonEmail = json["email"].string{
             email = jsonEmail
