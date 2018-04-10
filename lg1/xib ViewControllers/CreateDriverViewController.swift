@@ -36,10 +36,10 @@ class CreateDriverViewController: UIViewController {
     
     let countries = ["USA", "MEX"]
     var selectedCountry: String?
+    var countryCode: String?
     var driver: Vozac?
     var isUserEditing = false
     var roles: [String: Bool] = ["driver": false, "admin": false, "accountant": false, "dispatcher": false]
-    
     
 //    override func viewDidLayoutSubviews() {
 //        //TODO: viewDidLayoutSubviews called multiple times
@@ -53,7 +53,6 @@ class CreateDriverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if (driver == nil) {
             self.title = "Create User"
         }
@@ -63,26 +62,21 @@ class CreateDriverViewController: UIViewController {
         }
         
         createTxtFieldDelegate()
+        populateDriver()
         setUpPickerView()
         createToolbar()
         formatButton()
         formatTxtPlaceholder()
         extendScrollViewObservers()
         setBarButtons()
-        populateDriver()
+        
         
         if isUserEditing {
             loginDetailsView.isHidden = true
         }
     }
     
-    func setUpPickerView(){
-        let countryPick = UIPickerView()
-        countryPick.delegate = self
-        countryPrefixTxt.inputView = countryPick
-     
-    }
-    
+
     func createToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -116,12 +110,12 @@ class CreateDriverViewController: UIViewController {
     }
     
     func formatTxtPlaceholder()  {
-        txtConfirmPassword?.attributedPlaceholder = NSAttributedString(string: "userPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtFirstName?.attributedPlaceholder = NSAttributedString(string: "passPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtUsername?.attributedPlaceholder = NSAttributedString(string: "userPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtPassword?.attributedPlaceholder = NSAttributedString(string: "passPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtLastName?.attributedPlaceholder = NSAttributedString(string: "userPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtEmail?.attributedPlaceholder = NSAttributedString(string: "passPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtConfirmPassword?.attributedPlaceholder = NSAttributedString(string: "Confirm Password*", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtFirstName?.attributedPlaceholder = NSAttributedString(string: "First Name*", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtUsername?.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtPassword?.attributedPlaceholder = NSAttributedString(string: "Password*", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtLastName?.attributedPlaceholder = NSAttributedString(string: "Last Name*", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtEmail?.attributedPlaceholder = NSAttributedString(string: "Email*", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
     }
 
     func extendScrollViewObservers() {
@@ -177,11 +171,11 @@ class CreateDriverViewController: UIViewController {
     func populateDriver() {
         if let selectedDriver = driver {
             phoneTxt.text = selectedDriver.phone
+            countryCode = String((selectedDriver.phone?.prefix(2))!)
             txtFirstName.text = selectedDriver.ime
             txtLastName.text = selectedDriver.prezime
             txtEmail.text = selectedDriver.email
             txtUsername.text = selectedDriver.username
-            
             for r in selectedDriver.roles! {
                 switch r {
                 case "driver": roles["driver"] = true
@@ -212,8 +206,22 @@ class CreateDriverViewController: UIViewController {
         case 4: roles["dispatcher"] = selected
         default: print("error selecting")
         }
-        
     }
+    
+    func setUpPickerView(){
+        let countryPick = UIPickerView()
+        countryPick.delegate = self
+        countryPrefixTxt.inputView = countryPick
+        switch countryCode {
+        case "+1":
+            countryPrefixTxt.text = countries[0]
+        case "+5":
+            countryPrefixTxt.text = countries[1]
+        default:
+            return
+        }
+    }
+    
 }
 
 extension CreateDriverViewController: UIPickerViewDataSource, UIPickerViewDelegate {
