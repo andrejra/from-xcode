@@ -11,6 +11,7 @@ import Alamofire_SwiftyJSON
 
 class CreateDriverViewController: UIViewController {
 
+    @IBOutlet weak var loginDetailsStack: UIStackView!
     @IBOutlet weak var countryPrefixTxt: UITextField!
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var phoneBottomView: UIView!
@@ -72,7 +73,10 @@ class CreateDriverViewController: UIViewController {
         
         
         if isUserEditing {
+            
+//        loginDetailsStack.heightAnchor.constraint(equalToConstant: 0).isActive = true
             loginDetailsView.isHidden = true
+//            loginDetailsStack.isHidden = true
         }
     }
     
