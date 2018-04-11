@@ -212,6 +212,7 @@ class CreateDriverViewController: UIViewController {
     func setUpPickerView(){
         let countryPick = UIPickerView()
         countryPick.delegate = self
+        countryPick.backgroundColor = .white
         countryPrefixTxt.inputView = countryPick
         switch countryCode {
         case "+1":
@@ -219,7 +220,7 @@ class CreateDriverViewController: UIViewController {
         case "+5":
             countryPrefixTxt.text = countries[1]
         default:
-            return
+            countryPrefixTxt.text = countries[0]
         }
     }
     

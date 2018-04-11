@@ -37,7 +37,6 @@
                 <outlet property="emailNameBottomView" destination="Efl-kN-UaI" id="zaB-hC-2H5"/>
                 <outlet property="firstNameBottomView" destination="5wd-Zt-Si0" id="PZx-Xi-WAN"/>
                 <outlet property="lastNameBottomView" destination="kNX-xZ-YQQ" id="wOO-SZ-XSM"/>
-                <outlet property="loginDetailsStack" destination="8ka-C9-gW7" id="EOX-8e-ell"/>
                 <outlet property="loginDetailsView" destination="0Pp-KJ-cVr" id="Vvv-DH-Yyw"/>
                 <outlet property="passwordBottomView" destination="gvp-HC-FuP" id="8z2-WZ-pWp"/>
                 <outlet property="phoneBottomView" destination="5rd-qK-3md" id="ZIr-Ke-ngD"/>
