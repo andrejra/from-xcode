@@ -27,22 +27,25 @@ class CheckBoxButton: UIButton {
 //        heightAnchor.constraint(equalToConstant: 25.0).isActive = true
 //        widthAnchor.constraint(equalToConstant: 25.0).isActive = true
         setImage(#imageLiteral(resourceName: "empty-checkbox"), for: .normal)
-        addTarget(self, action: #selector(CheckBoxButton.buttonPressed), for: .touchUpInside)
+        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
     }
     
     @objc func buttonPressed() {
-        activateButton(bool: !isON)
+        self.isSelected = !self.isSelected
+//        isON = !isON
+//        activateButton(bool: !isON)
     }
     
     func activateButton(bool: Bool) {
         isON = bool
+        
         print(isON)
         let image = bool ? #imageLiteral(resourceName: "checked-box"):#imageLiteral(resourceName: "empty-checkbox")
         setImage(image, for: .normal)
-        let createDriverVC = CreateDriverViewController()  // PROVERITI !!!!
-        createDriverVC.changeRoles(tag: tag, selected: isON)    // PROVERITI !!!!
-//        CreateDriverViewController.changeRoles(tag) // PROVERITI !!!!
+        let createDriverVC = CreateDriverViewController()  //AR - depr.
+        createDriverVC.changeRoles(tag: tag, selected: isON)    // AR - depr.
+
     }
     func didSelect() {
         

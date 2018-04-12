@@ -2,7 +2,7 @@
 //  xibDriverTableViewController.swift
 //  lg1
 //
-//  Created by Andrej on 3/13/18.
+//  Created by Andrej
 //  Copyright © 2018 Andrej. All rights reserved.
 //
 
@@ -12,7 +12,6 @@ import SwiftyJSON
 
 class DriverTableViewController: UITableViewController {
     
-    var token = ""
     var drivers = [Vozac]()
     let fr8hubBlue = UIColor(red: 15.0/255.0, green: 33.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     
@@ -91,7 +90,7 @@ class DriverTableViewController: UITableViewController {
         
         let url = URL(string: "https://api-fhdev.vibe.rs/logout")!
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)",
+            "Authorization": "Bearer \(SettingsManager.authToken)",
             "Content-Type": "application/json"
         ]
         Alamofire.request(url, method: .post, headers: headers).validate().responseJSON { response in
@@ -108,7 +107,7 @@ class DriverTableViewController: UITableViewController {
     func getDrivers(){
         let url = URL(string: "https://api-fhdev.vibe.rs/drivers?page_size=100")!
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)",
+            "Authorization": "Bearer \(SettingsManager.authToken)",
             "Content-Type": "application/json"
         ]
         

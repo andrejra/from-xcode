@@ -14,6 +14,7 @@
 		D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D21CA52E203B233D0089EF42 /* lg1.xcdatamodeld */; };
 		D2282FA22062B61F0090327A /* DrTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2282FA02062B61F0090327A /* DrTableViewCell.xib */; };
 		D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */; };
+		D239C4DA207FBE1D00E6AC04 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239C4D9207FBE1D00E6AC04 /* SettingsManager.swift */; };
 		D23AA504204D4CE400D68BC7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23AA503204D4CE400D68BC7 /* Media.xcassets */; };
 		D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB32203DAA8000A7F99D /* Vozac.swift */; };
 		D295547E2063F0620009BA17 /* CreateDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D295547C2063F0620009BA17 /* CreateDriverViewController.swift */; };
@@ -48,6 +49,7 @@
 		D21CA536203B233D0089EF42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2282FA02062B61F0090327A /* DrTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrTableViewCell.xib; sourceTree = "<group>"; };
 		D22E6BDB2040658B002E35EF /* DriverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewCell.swift; sourceTree = "<group>"; };
+		D239C4D9207FBE1D00E6AC04 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		D23AA503204D4CE400D68BC7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		D26DDB32203DAA8000A7F99D /* Vozac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vozac.swift; sourceTree = "<group>"; };
 		D295547C2063F0620009BA17 /* CreateDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		D21CA526203B233D0089EF42 /* lg1 */ = {
 			isa = PBXGroup;
 			children = (
+				D239C4DB207FBE4700E6AC04 /* Managers */,
 				D21A416F2068F78A00CFFA9C /* Abstraction */,
 				D20126602046FFD900BF82B9 /* Signals */,
 				D2334F5220625FF600A30E07 /* xib ViewControllers */,
@@ -150,6 +153,14 @@
 				D295547D2063F0620009BA17 /* CreateDriverViewController.xib */,
 			);
 			path = "xib ViewControllers";
+			sourceTree = "<group>";
+		};
+		D239C4DB207FBE4700E6AC04 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D239C4D9207FBE1D00E6AC04 /* SettingsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		D26DDB38203DD11900A7F99D /* Model */ = {
@@ -352,6 +363,7 @@
 				D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */,
 				D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */,
 				D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */,
+				D239C4DA207FBE1D00E6AC04 /* SettingsManager.swift in Sources */,
 				D21A41712068F7A300CFFA9C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

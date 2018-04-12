@@ -2,12 +2,13 @@
 //  CreateDriverViewController.swift
 //  lg1
 //
-//  Created by Andrej on 3/22/18.
+//  Created by Andrej
 //  Copyright © 2018 Andrej. All rights reserved.
 //
 
 import UIKit
 import Alamofire_SwiftyJSON
+import Alamofire
 
 class CreateDriverViewController: UIViewController {
 
@@ -41,6 +42,7 @@ class CreateDriverViewController: UIViewController {
     var isUserEditing = false
     var roles: [String: Bool] = ["driver": false, "admin": false, "accountant": false, "dispatcher": false]
     
+    
 //    override func viewDidLayoutSubviews() {
 //        //TODO: viewDidLayoutSubviews called multiple times
 //        super.viewDidLayoutSubviews()
@@ -59,6 +61,8 @@ class CreateDriverViewController: UIViewController {
         else {
             isUserEditing = true
             self.title = "Edit User"
+            txtEmail.isEnabled = false
+            loginDetailsView.isHidden = true
         }
         
         createTxtFieldDelegate()
@@ -70,11 +74,6 @@ class CreateDriverViewController: UIViewController {
         extendScrollViewObservers()
         setBarButtons()
         
-        
-        if isUserEditing {
-    
-            loginDetailsView.isHidden = true
-        }
     }
     
 
@@ -133,7 +132,7 @@ class CreateDriverViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
+        contentInset.bottom = keyboardFrame.size.height + 25 // + 25 zbog keyboard dictionary
         self.scrollView.contentInset = contentInset
     }
     // Scroll View disappear w/ Keyboard
@@ -169,6 +168,39 @@ class CreateDriverViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func customPopulateDriver() {
+        if let selectedDriver = driver {
+            phoneTxt.text = selectedDriver.phone
+            countryCode = String((selectedDriver.phone?.prefix(2))!)
+            txtFirstName.text = selectedDriver.ime
+            txtLastName.text = selectedDriver.prezime
+            txtEmail.text = selectedDriver.email
+            txtUsername.text = selectedDriver.username
+            for r in selectedDriver.roles! {
+                switch r {
+                case "driver":
+                    changeRoles(tag: 1, selected: true)
+                    chkboxDriver.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
+                    chkboxDriver.isON = true
+                case "accountant":
+                    changeRoles(tag: 3, selected: true)
+                    chkboxAccountant.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
+                    chkboxAccountant.isON = true
+                case "dispatcher":
+                    changeRoles(tag: 4, selected: true)
+                    chkboxDispatcher.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
+                    chkboxDispatcher.isON = true
+                case "admin":
+                    changeRoles(tag: 2, selected: true)
+                    chkboxAdmin.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
+                    chkboxAdmin.isON = true
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
     func populateDriver() {
         if let selectedDriver = driver {
             phoneTxt.text = selectedDriver.phone
@@ -179,18 +211,14 @@ class CreateDriverViewController: UIViewController {
             txtUsername.text = selectedDriver.username
             for r in selectedDriver.roles! {
                 switch r {
-                case "driver": roles["driver"] = true
-                    chkboxDriver.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
-                    chkboxDriver.isON = true
-                case "accountant": roles["accountant"] = true
-                    chkboxAccountant.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
-                    chkboxAccountant.isON = true
-                case "dispatcher": roles["dispatcher"] = true
-                    chkboxDispatcher.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
-                    chkboxDispatcher.isON = true
-                case "admin": roles["admin"] = true
-                    chkboxAdmin.setImage(#imageLiteral(resourceName: "checked-box"), for: .normal)
-                    chkboxAdmin.isON = true
+                case "driver":
+                    chkboxDriver.isSelected = true
+                case "accountant":
+                    chkboxAccountant.isSelected = true
+                case "dispatcher":
+                    chkboxDispatcher.isSelected = true
+                case "admin":
+                    chkboxAdmin.isSelected = true
                 default:
                     break
                 }
@@ -224,8 +252,134 @@ class CreateDriverViewController: UIViewController {
         }
     }
     
-}
+    // save Driver
+    @IBAction func saveDriver(_ sender: Any) {
+        if(!isUserEditing) {
+            var updatedRoles: [String] = []
+            let thereWereErrors = checkForErrors()
+            if !thereWereErrors
+            {
+                if chkboxAdmin.isSelected {
+                    updatedRoles.append("admin")
+                }
+                if chkboxDispatcher.isSelected {
+                    updatedRoles.append("dispatcher")
+                }
+                if chkboxAccountant.isSelected {
+                    updatedRoles.append("accountant")
+                }
+                if chkboxDriver.isSelected {
+                    updatedRoles.append("driver")
+                }
+                
+                let url = URL(string: "https://api-fhdev.vibe.rs/users/new")!
+                let headers: HTTPHeaders = [
+                    "Authorization": "Bearer \(SettingsManager.authToken)",
+                    "Content-Type": "application/json"
+                ]
+                let parameters: Parameters = [
+                    "first_name": txtFirstName.text!,
+                    "last_name": txtLastName.text!,
+                    "cellphone": phoneTxt.text!,
+                    "email": txtEmail.text!,
+                    "password": txtPassword.text!,
+                    "password_confirmation": txtConfirmPassword.text!,
+                    "roles": updatedRoles
+                ]
+                
+                Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON {
+                    
+                    response in
+                    switch response.result {
+                    case .success:
+                        print("Validation Successful")
+                        print("AR - Driver Saved")
+                        self.popVC()
+                        
+                    case .failure:
+                        if let httpStatusCode = response.response?.statusCode {
+                            print(httpStatusCode)
+                        }
+                    }
+                }
+            }
+        }
+            
+        else {
+            
+            // update btn..
+            
+        }
+    }
+    
+    //validacija
+    func checkForErrors() -> Bool
+    {
+        var errors = false
+        let title = "Error"
+        var message = ""
+        if (txtFirstName.text?.isEmpty)! {
+            errors = true
+            message += "First name is empty"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtFirstName)
+            
+        }
+        else if (txtLastName.text?.isEmpty)!
+        {
+            errors = true
+            message += "Last Name is empty"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtLastName)
 
+        }
+        else if (txtEmail.text?.isEmpty)!
+        {
+            errors = true
+            message += "Email is empty"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtEmail)
+            
+        }
+        else if !((txtEmail.text?.contains("@"))!)
+        {
+            errors = true
+            message += "Invalid Email Address"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtEmail)
+            
+        }
+        else if (txtPassword.text?.isEmpty)!
+        {
+            errors = true
+            message += "Password is empty"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:txtPassword)
+        }
+        else if (txtPassword.text?.count)!<6
+        {
+
+            errors = true
+            message += "Password must be at least 6 characters"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtPassword)
+        }
+        else if !(txtPassword.text == txtConfirmPassword.text) {
+            
+            errors = true
+            message += "Password don't match"
+            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtConfirmPassword)
+        }
+        
+        return errors
+    }
+    
+    // Validacija Custom Alert
+    func alertWithTitle(title: String!, message: String, ViewController: UIViewController, toFocus:UITextField) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel,handler: {_ in
+            toFocus.becomeFirstResponder()
+        });
+        alert.addAction(action)
+        ViewController.present(alert, animated: true, completion:nil)
+    }
+    
+}
+    // Picker extension
 extension CreateDriverViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -241,7 +395,7 @@ extension CreateDriverViewController: UIPickerViewDataSource, UIPickerViewDelega
         countryPrefixTxt.text = selectedCountry
     }
 }
-
+    // Text delegate extension
 extension CreateDriverViewController: UITextFieldDelegate, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if let phone = phoneTxt, phone.isEditing {

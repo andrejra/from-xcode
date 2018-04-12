@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  lg1
 //
-//  Created by Andrej on 2/19/18.
+//  Created by Andrej
 //  Copyright © 2018 Andrej. All rights reserved.
 //
 

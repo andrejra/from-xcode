@@ -2,7 +2,7 @@
 //  xibLoginViewController.swift
 //  lg1
 //
-//  Created by Andrej on 3/12/18.
+//  Created by Andrej 
 //  Copyright © 2018 Andrej. All rights reserved.
 //
 
@@ -13,11 +13,8 @@ import SwiftyJSON
 class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     let fr8hubOrange = UIColor(rgb: 0xBB5615)
-
-
-    var token = ""
     let fr8hubBlue = UIColor(red: 15.0/255.0, green: 33.0/255.0, blue: 86.0/255.0, alpha: 1.0)
-//    let fr8hubOrange = UIColor(red: 188.0/255.0, green: 111.0/255.0, blue: 48.0/255.0, alpha: 1.0)
+
     @IBOutlet weak var txtUser: UITextField?
     @IBOutlet weak var txtPass: UITextField?
     @IBOutlet weak var loginBtnLabel: UIButton!
@@ -28,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var passTopHiddenLbl: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    //Mark: override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         //Text Fields -> Custom Placeholder
         txtUser?.attributedPlaceholder = NSAttributedString(string: "Username or Email", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
-        txtPass?.attributedPlaceholder = NSAttributedString(string: "passPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+        txtPass?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         
         //Text View Edit -> SEE MARK:
         performLinkMaker()
@@ -237,7 +233,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func alamoLogin() {
         
         let url = URL(string: "https://api-fhdev.vibe.rs/login")!
-        let parameters = ["app":"mobile", "email":readCredentials()["user"], "password":readCredentials()["pass"]]
+        let parameters:Parameters = ["app":"mobile", "email":readCredentials()["user"]!, "password":readCredentials()["pass"]!]
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { [unowned self] response in
             
@@ -247,13 +243,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 let json = JSON(value)
                 if let token = json["token"].string {
                     print("AR: token - \(token)")
-                    self.token = token
-                    
+                    SettingsManager.authToken = token
                     
                     let vc = DriverTableViewController(
                         nibName: "DriverTableViewController",
                         bundle: nil)
-                    vc.token = self.token
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):

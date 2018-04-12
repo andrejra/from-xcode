@@ -2,7 +2,7 @@
 //  Messages.swift
 //  lg1
 //
-//  Created by Andrej on 2/28/18.
+//  Created by Andrej on 
 //  Copyright © 2018 Andrej. All rights reserved.
 //
 
