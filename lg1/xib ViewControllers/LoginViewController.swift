@@ -201,14 +201,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         if let user = txtUser, !user.isEditing {
             emailBottomView?.backgroundColor = .gray
             emailTopHiddenLbl.isHidden = true
-            txtUser?.attributedPlaceholder = NSAttributedString(string: "userPlaceholder", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+            txtUser?.attributedPlaceholder = NSAttributedString(string: "Username or Email", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
             
         }
         if let pass = txtPass, !pass.isEditing {
             passwordBottomView?.backgroundColor = .gray
             passTopHiddenLbl.isHidden = true
-            txtPass?.placeholder = "Password"
-//            txtPass?.attributedPlaceholder = NSAttributedString(string: passPlaceholder, attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
+            txtPass?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.font:UIFont(name: "Calibre", size: 20.0)!])
         }
     }
     //Mark: TextView properties (for making HyperLink txtview)
