@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNetworkListeners()
         
         // Handle the text field’s user input through delegate callbacks.
         txtUser?.delegate = self
@@ -84,7 +85,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: Buttons
 
     @IBAction func loginBtn() {
-        alamoLogin()
+        baseLogin()
+//        alamoLogin()
     }
     // push next controller
     
@@ -159,7 +161,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             txtPass?.becomeFirstResponder()
         } else if textField == txtPass {
             textField.resignFirstResponder()
-            alamoLogin()
+            baseLogin()
+//            alamoLogin()
         }
         return true
     }
@@ -227,6 +230,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         navigationController?.navigationBar.layer.shadowRadius = 0.0
         navigationController?.navigationBar.layer.shadowOpacity = 0.0
         
+    }
+    
+    func baseLogin() {
+        if let email = txtUser?.text, let pass = txtPass?.text {
+            Login(email: email, password: pass).execute()
+        }
+    }
+    
+    private func setupNetworkListeners() {
+        Messages.loginSuccess.subscribe(with: self) { [unowned self] _ in
+            let vc = DriverTableViewController(
+                nibName: "DriverTableViewController",
+                bundle: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        Messages.loginFailure.subscribe(with: self) { [unowned self] error in
+            let alert = UIAlertController(title: "Try Again", message: error, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func alamoLogin() {

@@ -9,6 +9,18 @@
 import Foundation
 import SwiftyJSON
 
+enum DriverStatus: String {
+    case Changed = "changed"
+    case Idle = "idle"
+    case OnLane = "on_lane"
+    case Incomplete = "incomplete"
+    case Invited = "invited"
+    case Disabled = "disabled"
+    case Rejected = "rejected"
+    case PendingVerification = "pending_verification"
+    case OnShipment = "on_shipment"
+}
+
 class Vozac {
     
     var ime: String?
@@ -17,15 +29,7 @@ class Vozac {
     var email: String?
     var phone: String?
     var roles: [String]?
-    
-    init(ime: String, prezime: String, email: String, username: String, phone: String, roles: [String]) {
-        self.ime = ime
-        self.prezime = prezime
-        self.username = username
-        self.email = email
-        self.phone = phone
-        self.roles = roles
-    }
+    var driverStatus: DriverStatus?
 
     init(jsonDriver: [String : Any]) {
         if let firstName = jsonDriver["first_name"] as? String{
@@ -45,6 +49,9 @@ class Vozac {
         }
         if let jsonRoles = jsonDriver["roles"] as? [String]{
             roles = jsonRoles
+        }
+        if let jsonDriverStatus = jsonDriver["driver_status"] as? String {
+            driverStatus = DriverStatus(rawValue: jsonDriverStatus)
         }
     }
     
@@ -67,7 +74,9 @@ class Vozac {
         if let jsonRoles = json["roles"].arrayObject as? [String]{
             roles = jsonRoles
         }
-        
+        if let jsonStatus = json["driver_status"].string {
+            driverStatus = DriverStatus(rawValue: jsonStatus)
+        }
     }
     
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire_SwiftyJSON
 import Alamofire
+import NotificationBannerSwift
 
 class CreateDriverViewController: UIViewController {
 
@@ -286,20 +287,28 @@ class CreateDriverViewController: UIViewController {
                     "password_confirmation": txtConfirmPassword.text!,
                     "roles": updatedRoles
                 ]
+                print(parameters)
                 
                 Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON {
                     
                     response in
                     switch response.result {
+                        
                     case .success:
                         print("Validation Successful")
                         print("AR - Driver Saved")
+                        let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully created"
+                        let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
+                        banner.show()
                         self.popVC()
+                        
                         
                     case .failure:
                         if let httpStatusCode = response.response?.statusCode {
                             print(httpStatusCode)
                         }
+                        let alert = UIAlertController(title: "Try Again", message: "Please enter valid creditentials", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     }
                 }
             }
@@ -307,7 +316,6 @@ class CreateDriverViewController: UIViewController {
             
         else {
             
-            // update btn..
             
         }
     }
