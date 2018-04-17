@@ -281,8 +281,8 @@ class CreateDriverViewController: UIViewController {
     // save Driver
     private func baseSaveDriver() {
         if let email = txtEmail?.text, let pass = txtPassword?.text, let confirmPass = txtConfirmPassword.text, let firstName = txtFirstName.text, let lastName = txtLastName.text, let phone = phoneTxt.text {
-            
-            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: getRoles()).execute()
+            let roles = getRoles()
+            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: roles).execute()
         }
     }
     
@@ -290,9 +290,8 @@ class CreateDriverViewController: UIViewController {
     @IBAction func saveDriver(_ sender: Any) {
         if(!isUserEditing) {
             let thereWereErrors = checkForErrors()
-            if !thereWereErrors
-            {
-             baseSaveDriver()
+            if !thereWereErrors {
+                baseSaveDriver()
             }
         }
             
@@ -371,6 +370,7 @@ class CreateDriverViewController: UIViewController {
         if (txtFirstName.text?.isEmpty)! {
             errors = true
             message += "First name is empty"
+            
             alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtFirstName)
             
         }
