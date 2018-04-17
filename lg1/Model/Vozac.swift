@@ -30,30 +30,6 @@ class Vozac {
     var phone: String?
     var roles: [String]?
     var driverStatus: DriverStatus?
-
-    init(jsonDriver: [String : Any]) {
-        if let firstName = jsonDriver["first_name"] as? String{
-            ime = firstName
-        }
-        if let lastName = jsonDriver["last_name"] as? String{
-            prezime = lastName
-        }
-        if let jsonUsername = jsonDriver["username"] as? String{
-            username = jsonUsername
-        }
-        if let jsonEmail = jsonDriver["email"] as? String{
-            email = jsonEmail
-        }
-        if let cellphone = jsonDriver["cellphone"] as? String{
-            phone = cellphone
-        }
-        if let jsonRoles = jsonDriver["roles"] as? [String]{
-            roles = jsonRoles
-        }
-        if let jsonDriverStatus = jsonDriver["driver_status"] as? String {
-            driverStatus = DriverStatus(rawValue: jsonDriverStatus)
-        }
-    }
     
     init(json: JSON) {
         if let firstName = json["first_name"].string{

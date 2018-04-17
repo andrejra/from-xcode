@@ -19,8 +19,8 @@
 		D26C88632080C3C2008CF307 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C88622080C3C2008CF307 /* BaseRequest.swift */; };
 		D26C88662080C45A008CF307 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C88652080C45A008CF307 /* Config.swift */; };
 		D26C88682080C62F008CF307 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C88672080C62F008CF307 /* Errors.swift */; };
-		D26C886A2080CFF0008CF307 /* DriverStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C88692080CFF0008CF307 /* DriverStatus.swift */; };
 		D26C886C2080D191008CF307 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C886B2080D191008CF307 /* Login.swift */; };
+		D26C886E2080DB10008CF307 /* GetDrivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C886D2080DB10008CF307 /* GetDrivers.swift */; };
 		D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26DDB32203DAA8000A7F99D /* Vozac.swift */; };
 		D295547E2063F0620009BA17 /* CreateDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D295547C2063F0620009BA17 /* CreateDriverViewController.swift */; };
 		D295547F2063F0620009BA17 /* CreateDriverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D295547D2063F0620009BA17 /* CreateDriverViewController.xib */; };
@@ -28,6 +28,8 @@
 		D29781D32057E4D800A8DB62 /* DriverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */; };
 		D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5E1E02056B865001A91DE /* LoginViewController.swift */; };
 		D2A5E1E32056B865001A91DE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2A5E1E12056B865001A91DE /* LoginViewController.xib */; };
+		D2B8154F2085F40B00CB538B /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8154E2085F40B00CB538B /* Logout.swift */; };
+		D2B8155120863AAE00CB538B /* CreateDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8155020863AAE00CB538B /* CreateDriver.swift */; };
 		D2DF5B7B204D4E8B00F1A967 /* Calibre-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B71204D4E8B00F1A967 /* Calibre-Light.otf */; };
 		D2DF5B7C204D4E8B00F1A967 /* Calibre-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B72204D4E8B00F1A967 /* Calibre-MediumItalic.otf */; };
 		D2DF5B7D204D4E8B00F1A967 /* Calibre-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2DF5B73204D4E8B00F1A967 /* Calibre-BoldItalic.otf */; };
@@ -59,8 +61,8 @@
 		D26C88622080C3C2008CF307 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		D26C88652080C45A008CF307 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D26C88672080C62F008CF307 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		D26C88692080CFF0008CF307 /* DriverStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStatus.swift; sourceTree = "<group>"; };
 		D26C886B2080D191008CF307 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		D26C886D2080DB10008CF307 /* GetDrivers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDrivers.swift; sourceTree = "<group>"; };
 		D26DDB32203DAA8000A7F99D /* Vozac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vozac.swift; sourceTree = "<group>"; };
 		D295547C2063F0620009BA17 /* CreateDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverViewController.swift; sourceTree = "<group>"; };
 		D295547D2063F0620009BA17 /* CreateDriverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateDriverViewController.xib; sourceTree = "<group>"; };
@@ -68,6 +70,8 @@
 		D29781D12057E4D800A8DB62 /* DriverTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverTableViewController.xib; sourceTree = "<group>"; };
 		D2A5E1E02056B865001A91DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D2A5E1E12056B865001A91DE /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		D2B8154E2085F40B00CB538B /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
+		D2B8155020863AAE00CB538B /* CreateDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriver.swift; sourceTree = "<group>"; };
 		D2DF5B71204D4E8B00F1A967 /* Calibre-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-Light.otf"; sourceTree = "<group>"; };
 		D2DF5B72204D4E8B00F1A967 /* Calibre-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-MediumItalic.otf"; sourceTree = "<group>"; };
 		D2DF5B73204D4E8B00F1A967 /* Calibre-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Calibre-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -179,6 +183,9 @@
 			children = (
 				D26C88642080C445008CF307 /* Base */,
 				D26C886B2080D191008CF307 /* Login.swift */,
+				D26C886D2080DB10008CF307 /* GetDrivers.swift */,
+				D2B8154E2085F40B00CB538B /* Logout.swift */,
+				D2B8155020863AAE00CB538B /* CreateDriver.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -197,7 +204,6 @@
 			children = (
 				D26DDB32203DAA8000A7F99D /* Vozac.swift */,
 				D26C88672080C62F008CF307 /* Errors.swift */,
-				D26C88692080CFF0008CF307 /* DriverStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,16 +400,18 @@
 				D21A41732068F88500CFFA9C /* CheckBoxButton.swift in Sources */,
 				D26DDB33203DAA8000A7F99D /* Vozac.swift in Sources */,
 				D20126622046FFEF00BF82B9 /* Messages.swift in Sources */,
+				D2B8155120863AAE00CB538B /* CreateDriver.swift in Sources */,
 				D2A5E1E22056B865001A91DE /* LoginViewController.swift in Sources */,
 				D21CA530203B233D0089EF42 /* lg1.xcdatamodeld in Sources */,
 				D295547E2063F0620009BA17 /* CreateDriverViewController.swift in Sources */,
-				D26C886A2080CFF0008CF307 /* DriverStatus.swift in Sources */,
 				D26C88682080C62F008CF307 /* Errors.swift in Sources */,
 				D26C88662080C45A008CF307 /* Config.swift in Sources */,
 				D22E6BDC2040658B002E35EF /* DriverTableViewCell.swift in Sources */,
 				D29781D22057E4D800A8DB62 /* DriverTableViewController.swift in Sources */,
+				D26C886E2080DB10008CF307 /* GetDrivers.swift in Sources */,
 				D26C88632080C3C2008CF307 /* BaseRequest.swift in Sources */,
 				D21CA528203B233D0089EF42 /* AppDelegate.swift in Sources */,
+				D2B8154F2085F40B00CB538B /* Logout.swift in Sources */,
 				D239C4DA207FBE1D00E6AC04 /* SettingsManager.swift in Sources */,
 				D21A41712068F7A300CFFA9C /* Constants.swift in Sources */,
 				D26C886C2080D191008CF307 /* Login.swift in Sources */,

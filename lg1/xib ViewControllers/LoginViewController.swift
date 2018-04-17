@@ -28,8 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNetworkListeners()
-        
         // Handle the text field’s user input through delegate callbacks.
         txtUser?.delegate = self
         txtPass?.delegate = self
@@ -56,8 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //Signal
-        setupSignalSubscription()
+        setupNetworkListeners()
         
         //NavBar Title as a Custom Image
         let logo = UIImage(named: "fr8hubLogo.png")
@@ -79,7 +76,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        Messages.postRequestFailed.cancelSubscription(for: self)
+        Messages.loginSuccess.cancelSubscription(for: self)
+        Messages.logoutFailure.cancelSubscription(for: self)
     }
     
     //MARK: Buttons
@@ -175,15 +173,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     //MARK: Signal
     private func setupSignalSubscription() {
-        Messages.postRequestFailed.subscribe(with: self) { [weak self] statusCode in
-            if statusCode == 401 {
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Try Again", message: "Username or password is invalid", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
+        
     }
     //MARK: TextField Begin/End Editing funcs
     func textFieldDidBeginEditing(_ textField: UITextField) {

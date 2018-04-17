@@ -77,7 +77,13 @@ class CreateDriverViewController: UIViewController {
         
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        setupNetworkListeners()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        Messages.createDriverFailure.cancelSubscription(for: self)
+        Messages.createDriverSuccess.cancelSubscription(for: self)
+    }
     func createToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -253,71 +259,107 @@ class CreateDriverViewController: UIViewController {
         }
     }
     
+    private func setupNetworkListeners() {
+        Messages.createDriverSuccess.subscribe(with: self) { [unowned self] _ in
+            print("Validation Successful")
+            print("AR - Driver Saved")
+            let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully created"
+            let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
+            banner.show()
+            self.popVC()
+        }
+        
+        Messages.createDriverFailure.subscribe(with: self) { [unowned self] error in
+            let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", style: .danger)
+            banner.show()
+//            let rightView = UIImageView(image: #imageLiteral(resourceName: "danger"))
+//            let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", rightView: rightView, style: .danger)
+//            banner.show()
+        }
+    }
+    
     // save Driver
+    private func baseSaveDriver() {
+        if let email = txtEmail?.text, let pass = txtPassword?.text, let confirmPass = txtConfirmPassword.text, let firstName = txtFirstName.text, let lastName = txtLastName.text, let phone = phoneTxt.text {
+            
+            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: getRoles()).execute()
+        }
+    }
+    
+    //save Driver
     @IBAction func saveDriver(_ sender: Any) {
         if(!isUserEditing) {
-            var updatedRoles: [String] = []
             let thereWereErrors = checkForErrors()
             if !thereWereErrors
             {
-                if chkboxAdmin.isSelected {
-                    updatedRoles.append("admin")
-                }
-                if chkboxDispatcher.isSelected {
-                    updatedRoles.append("dispatcher")
-                }
-                if chkboxAccountant.isSelected {
-                    updatedRoles.append("accountant")
-                }
-                if chkboxDriver.isSelected {
-                    updatedRoles.append("driver")
-                }
-                
-                let url = URL(string: "https://api-fhdev.vibe.rs/users/new")!
-                let headers: HTTPHeaders = [
-                    "Authorization": "Bearer \(SettingsManager.authToken)",
-                    "Content-Type": "application/json"
-                ]
-                let parameters: Parameters = [
-                    "first_name": txtFirstName.text!,
-                    "last_name": txtLastName.text!,
-                    "cellphone": phoneTxt.text!,
-                    "email": txtEmail.text!,
-                    "password": txtPassword.text!,
-                    "password_confirmation": txtConfirmPassword.text!,
-                    "roles": updatedRoles
-                ]
-                print(parameters)
-                
-                Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON {
-                    
-                    response in
-                    switch response.result {
-                        
-                    case .success:
-                        print("Validation Successful")
-                        print("AR - Driver Saved")
-                        let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully created"
-                        let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
-                        banner.show()
-                        self.popVC()
-                        
-                        
-                    case .failure:
-                        if let httpStatusCode = response.response?.statusCode {
-                            print(httpStatusCode)
-                        }
-                        let alert = UIAlertController(title: "Try Again", message: "Please enter valid creditentials", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    }
-                }
+             baseSaveDriver()
             }
         }
             
         else {
-            
+            print("update dr")
             
         }
+    }
+    
+    private func alamoSaveDriver() {
+        
+        let url = URL(string: "https://api-fhdev.vibe.rs/users/new")!
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(SettingsManager.authToken)",
+            "Content-Type": "application/json"
+        ]
+        let parameters: Parameters = [
+            "first_name": txtFirstName.text!,
+            "last_name": txtLastName.text!,
+            "cellphone": phoneTxt.text!,
+            "email": txtEmail.text!,
+            "password": txtPassword.text!,
+            "password_confirmation": txtConfirmPassword.text!,
+            "roles": getRoles()
+        ]
+        print(parameters)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON {
+            
+            response in
+            switch response.result {
+                
+            case .success:
+                print("Validation Successful")
+                print("AR - Driver Saved")
+                let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully created"
+                let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
+                banner.show()
+                self.popVC()
+                
+                
+            case .failure:
+                if let httpStatusCode = response.response?.statusCode {
+                    print(httpStatusCode)
+                }
+                let alert = UIAlertController(title: "Try Again", message: "Please enter valid creditentials", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            }
+        }
+    }
+    // read chkboxes
+    private func getRoles() -> [String] {
+        
+        var updatedRoles: [String] = []
+        if chkboxAdmin.isSelected {
+            updatedRoles.append("admin")
+        }
+        if chkboxDispatcher.isSelected {
+            updatedRoles.append("dispatcher")
+        }
+        if chkboxAccountant.isSelected {
+            updatedRoles.append("accountant")
+        }
+        if chkboxDriver.isSelected {
+            updatedRoles.append("driver")
+        }
+        return updatedRoles
     }
     
     //validacija

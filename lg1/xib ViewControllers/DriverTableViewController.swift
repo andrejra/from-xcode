@@ -17,7 +17,7 @@ class DriverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //registering XIB CELL
         tableView.register(UINib.init(nibName: "DrTableViewCell", bundle: nil), forCellReuseIdentifier: "DrTableViewCell")
         
@@ -32,8 +32,15 @@ class DriverTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+         setupNetworkListeners()
         //Load drivers to the table every time view is presented
-        getDrivers()
+//        getDrivers()
+        GetDrivers().execute()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        Messages.getDriversSuccess.cancelSubscription(for: self)
+        Messages.getDriversFailure.cancelSubscription(for: self)
     }
         //Set status bar back to dark
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -84,6 +91,29 @@ class DriverTableViewController: UITableViewController {
     
     @IBAction func editBtn(_ sender: UIBarButtonItem) {
         setEditing(!isEditing, animated: true)
+    }
+    
+    private func setupNetworkListeners() {
+        Messages.getDriversSuccess.subscribe(with: self) { [unowned self] drivers in
+            self.drivers = drivers
+            self.tableView.reloadData()
+            
+        }
+        
+        Messages.getDriversFailure.subscribe(with: self) { [unowned self] error in
+            let alert = UIAlertController(title: "Failed to Load Drivers", message: error, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        Messages.logoutSuccess.subscribe(with: self) { [unowned self] in
+            self.popVC()
+        }
+        Messages.logoutFailure.subscribe(with: self) { [unowned self] error in
+            let alert = UIAlertController(title: "Failed to Logout", message: error, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func btnLogOut(_ sender: UIBarButtonItem) {
@@ -167,7 +197,8 @@ class DriverTableViewController: UITableViewController {
         
     }
 
-    @objc func pushCreateDriverVC(){ //zasto @objc
+    @objc
+    func pushCreateDriverVC(){
         let vc = CreateDriverViewController(
             nibName: "CreateDriverViewController",
             bundle: nil)
