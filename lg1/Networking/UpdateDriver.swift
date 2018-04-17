@@ -26,7 +26,7 @@ class UpdateDriver: BasePutRequest {
     }
     
     override func path() -> String {
-        return "/users/\()"
+        return "/users/"
     }
     
     override func params() -> [String : Any]? {
@@ -34,9 +34,6 @@ class UpdateDriver: BasePutRequest {
             "first_name": firstName,
             "last_name": lastName,
             "cellphone": phone,
-            "email": email,
-            "password": password,
-            "password_confirmation": confirmPassword,
             "roles": updatedRoles
         ]
     }

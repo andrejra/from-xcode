@@ -370,8 +370,8 @@ class CreateDriverViewController: UIViewController {
         if (txtFirstName.text?.isEmpty)! {
             errors = true
             message += "First name is empty"
-            
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtFirstName)
+            AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: txtFirstName)
+//            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtFirstName)
             
         }
         else if (txtLastName.text?.isEmpty)!
