@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.0)
+  - Alamofire (4.7.2)
   - Alamofire-SwiftyJSON (3.0.0):
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
@@ -18,8 +18,18 @@ DEPENDENCIES:
   - Signals (~> 5.0)
   - SwiftyJSON (~> 4.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Alamofire-SwiftyJSON
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - Signals
+    - SnapKit
+    - SwiftyJSON
+
 SPEC CHECKSUMS:
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   NotificationBannerSwift: 4eceb2add9d5eaa0596c63d49690b4d6476e74ec
@@ -29,4 +39,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d2ad7afd0d502b1cb2f86704f5f967fbf1e91d08
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
