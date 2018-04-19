@@ -18,9 +18,9 @@ class CreateDriver: BasePostRequest {
     private var phone: String
     private var confirmPassword: String
     private var updatedRoles: [String]
-    private var username: String
+    private var username: String?
     
-    init(email: String, password: String, firstName: String, lastName: String, phone: String, confirmPassword: String, updatedRoles: [String], username: String) {
+    init(email: String, password: String, firstName: String, lastName: String, phone: String, confirmPassword: String, updatedRoles: [String], username: String?) {
         self.email = email
         self.password = password
         self.firstName = firstName
@@ -44,7 +44,7 @@ class CreateDriver: BasePostRequest {
             "password": password,
             "password_confirmation": confirmPassword,
             "roles": updatedRoles,
-            "username": username
+            "username": username ?? NSNull()
         ]
     }
     

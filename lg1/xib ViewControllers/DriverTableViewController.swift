@@ -88,6 +88,7 @@ class DriverTableViewController: UITableViewController {
                 }
                 
                 DeleteDriver(driverID: driverID).execute()
+                //TODO
                 drivers.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
@@ -131,8 +132,9 @@ class DriverTableViewController: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        Messages.deleteDriverSuccess.subscribe(with: self) { [unowned self] _ in
+        Messages.deleteDriverSuccess.subscribe(with: self) { _ in
             print("AR - Driver Deleted")
+            
             let banner = NotificationBanner(title: "Success", subtitle: "Driver successfully deleted", style: .success)
             banner.show()
         }

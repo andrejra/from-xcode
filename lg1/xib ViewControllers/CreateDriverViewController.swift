@@ -338,7 +338,14 @@ class CreateDriverViewController: UIViewController {
                 AlertManager.alertWithTitle(title: "Try Again", message: "Select at least one role", viewController: self, toFocus: txtFirstName)
                 return
             }
-            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: roles, username: username).execute()
+            var user: String?
+            if username == "" {
+                user = nil
+            }
+            else {
+                user = username
+            }
+            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: roles, username: user).execute()
         }
     }
     
