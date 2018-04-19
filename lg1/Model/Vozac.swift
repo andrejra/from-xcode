@@ -30,6 +30,7 @@ class Vozac {
     var phone: String?
     var roles: [String]?
     var driverStatus: DriverStatus?
+    var driverID: String?
     
     init(json: JSON) {
         if let firstName = json["first_name"].string{
@@ -52,6 +53,9 @@ class Vozac {
         }
         if let jsonStatus = json["driver_status"].string {
             driverStatus = DriverStatus(rawValue: jsonStatus)
+        }
+        if let jsonDriverID = json["id"].string{
+            driverID = jsonDriverID
         }
     }
     

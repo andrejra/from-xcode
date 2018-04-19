@@ -21,7 +21,6 @@ class GetDrivers: BaseGetRequest {
             for jsonDriver in jsonDrivers{
                 let newDriver = Vozac(json: jsonDriver)
                 drivers.append(newDriver)
-//                DriverTableViewController.tableView.reloadData()
                 Messages.getDriversSuccess.fire(drivers)
             }
         }

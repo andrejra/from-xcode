@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NotificationBannerSwift
 
 class DriverTableViewController: UITableViewController {
     
@@ -41,6 +42,10 @@ class DriverTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         Messages.getDriversSuccess.cancelSubscription(for: self)
         Messages.getDriversFailure.cancelSubscription(for: self)
+        Messages.logoutSuccess.cancelSubscription(for: self)
+        Messages.loginFailure.cancelSubscription(for: self)
+        Messages.deleteDriverSuccess.cancelSubscription(for: self)
+        Messages.deleteDriverFailure.cancelSubscription(for: self)
     }
         //Set status bar back to dark
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -72,9 +77,20 @@ class DriverTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            drivers.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
+            if let driverID = drivers[indexPath.row].driverID, let driverStatus = drivers[indexPath.row].driverStatus, let firstName = drivers[indexPath.row].ime, let lastName = drivers[indexPath.row].prezime {
+                
+                if driverStatus.rawValue == "on_shipment" {
+                    
+                    let message = "Driver \(firstName) \(lastName) is currently on shipment!"
+                    let banner = NotificationBanner(title: "Couldn't delete driver", subtitle: message, style: .danger)
+                    banner.show()
+                    return
+                }
+                
+                DeleteDriver(driverID: driverID).execute()
+                drivers.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     //Allow Editing
@@ -114,24 +130,36 @@ class DriverTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        
+        Messages.deleteDriverSuccess.subscribe(with: self) { [unowned self] _ in
+            print("AR - Driver Deleted")
+            let banner = NotificationBanner(title: "Success", subtitle: "Driver successfully deleted", style: .success)
+            banner.show()
+        }
+        
+        Messages.deleteDriverFailure.subscribe(with: self) { error in
+            let banner = NotificationBanner(title: "Driver was not deleted", subtitle: error, style: .danger)
+            banner.show()
+        }
     }
     
     @IBAction func btnLogOut(_ sender: UIBarButtonItem) {
         
-        let url = URL(string: "https://api-fhdev.vibe.rs/logout")!
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(SettingsManager.authToken)",
-            "Content-Type": "application/json"
-        ]
-        Alamofire.request(url, method: .post, headers: headers).validate().responseJSON { response in
-            switch response.result {
-            case .success:
-                print("AR: Log Out ok")
-                self.popVC()
-            case .failure(let error):
-                print(error)
-            }
-        }
+        Logout().execute()
+//        let url = URL(string: "https://api-fhdev.vibe.rs/logout")!
+//        let headers: HTTPHeaders = [
+//            "Authorization": "Bearer \(SettingsManager.authToken)",
+//            "Content-Type": "application/json"
+//        ]
+//        Alamofire.request(url, method: .post, headers: headers).validate().responseJSON { response in
+//            switch response.result {
+//            case .success:
+//                print("AR: Log Out ok")
+//                self.popVC()
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     func getDrivers(){

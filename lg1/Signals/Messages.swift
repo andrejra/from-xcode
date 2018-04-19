@@ -26,5 +26,14 @@ class Messages {
     static let createDriverSuccess = Signal<Void>()
     static let createDriverFailure = Signal<String>()
     
+    static let updateDriverSuccess = Signal<Void>()
+    static let updateDriverFailure = Signal<String>()
+    
+    static let updateDriverRolesSuccess = Signal<Void>()
+    static let updateDriverRolesFailure = Signal<String>()
+    
+    static let deleteDriverSuccess = Signal<Void>()
+    static let deleteDriverFailure = Signal<String>()
+    
     
 }

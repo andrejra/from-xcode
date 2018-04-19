@@ -14,19 +14,17 @@ class UpdateDriver: BasePutRequest {
     private var firstName: String
     private var lastName: String
     private var phone: String
-    private var updatedRoles: [String]
     private var driverID: String
     
-    init(driverID: String, firstName: String, lastName: String, phone: String, updatedRoles: [String]) {
+    init(driverID: String, firstName: String, lastName: String, phone: String) {
         self.driverID = driverID
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone
-        self.updatedRoles = updatedRoles
     }
     
     override func path() -> String {
-        return "/users/"
+        return "/profiles/\(driverID)"
     }
     
     override func params() -> [String : Any]? {
@@ -34,18 +32,17 @@ class UpdateDriver: BasePutRequest {
             "first_name": firstName,
             "last_name": lastName,
             "cellphone": phone,
-            "roles": updatedRoles
         ]
     }
     
     override func success(response: JSON) {
         
-        Messages.createDriverSuccess.fire(())
+        Messages.updateDriverSuccess.fire(())
         
     }
     
     override func failure(code: Int, error: String, errors: Errors?) {
-        Messages.createDriverFailure.fire(error)
+        Messages.updateDriverFailure.fire(error)
     }
     
 }

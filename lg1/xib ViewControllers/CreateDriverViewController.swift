@@ -83,6 +83,12 @@ class CreateDriverViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         Messages.createDriverFailure.cancelSubscription(for: self)
         Messages.createDriverSuccess.cancelSubscription(for: self)
+        Messages.updateDriverSuccess.cancelSubscription(for: self)
+        Messages.updateDriverFailure.cancelSubscription(for: self)
+        Messages.updateDriverRolesSuccess.cancelSubscription(for: self)
+        Messages.updateDriverRolesFailure.cancelSubscription(for: self)
+        Messages.deleteDriverFailure.cancelSubscription(for: self)
+        Messages.deleteDriverSuccess.cancelSubscription(for: self)
     }
     func createToolbar() {
         let toolbar = UIToolbar()
@@ -168,7 +174,15 @@ class CreateDriverViewController: UIViewController {
     }
     
     @objc func deleteDriver() {
-        
+        if let driverID = driver?.driverID, let driverStatus = driver?.driverStatus, let firstName = driver?.ime, let lastName = driver?.prezime {
+            if driverStatus.rawValue == "on_shipment" {
+                let message = "Driver \(firstName) \(lastName) is currently on shipment!"
+                let banner = NotificationBanner(title: "Couldn't delete driver", subtitle: message, style: .danger)
+                banner.show()
+                return
+            }
+        DeleteDriver(driverID: driverID).execute()
+        }
     }
     
     @objc func popVC(){
@@ -272,21 +286,63 @@ class CreateDriverViewController: UIViewController {
         Messages.createDriverFailure.subscribe(with: self) { [unowned self] error in
             let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", style: .danger)
             banner.show()
+            // Custom banner w/ view
 //            let rightView = UIImageView(image: #imageLiteral(resourceName: "danger"))
 //            let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", rightView: rightView, style: .danger)
 //            banner.show()
         }
+        
+        Messages.updateDriverSuccess.subscribe(with: self) { [unowned self] _ in
+            print("AR - Driver Updated")
+            UpdateDriverRoles(driverID: (self.driver?.driverID)!, updatedRoles: self.getRoles()).execute()
+        }
+        
+        Messages.updateDriverFailure.subscribe(with: self) { error in
+            let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", style: .danger)
+            banner.show()
+        }
+        
+        Messages.updateDriverRolesSuccess.subscribe(with: self) { [unowned self] _ in
+            print("AR - Role Updated")
+            let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully updated"
+            let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
+            banner.show()
+            self.popVC()
+        }
+        
+        Messages.updateDriverRolesFailure.subscribe(with: self) { error in
+            let banner = NotificationBanner(title: "Driver was not created", subtitle: "Please check data you entered", style: .danger)
+            banner.show()
+        }
+        
+        Messages.deleteDriverSuccess.subscribe(with: self) { [unowned self] _ in
+            print("AR - Driver Deleted")
+            let message = "Driver \(self.txtFirstName.text!) \(self.txtLastName.text!) successfully deleted"
+            let banner = NotificationBanner(title: "Success", subtitle: message, style: .success)
+            banner.show()
+            self.popVC()
+        }
+        
+        Messages.deleteDriverFailure.subscribe(with: self) { error in
+            let banner = NotificationBanner(title: "Driver was not deleted", subtitle: error, style: .danger)
+            banner.show()
+        }
+        
     }
     
-    // save Driver
+    // Base save Driver
     private func baseSaveDriver() {
-        if let email = txtEmail?.text, let pass = txtPassword?.text, let confirmPass = txtConfirmPassword.text, let firstName = txtFirstName.text, let lastName = txtLastName.text, let phone = phoneTxt.text {
+        if let email = txtEmail?.text, let pass = txtPassword?.text, let confirmPass = txtConfirmPassword.text, let firstName = txtFirstName.text, let lastName = txtLastName.text, let phone = phoneTxt.text, let username = txtUsername.text {
             let roles = getRoles()
-            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: roles).execute()
+            if roles.count < 1 {
+                AlertManager.alertWithTitle(title: "Try Again", message: "Select at least one role", viewController: self, toFocus: txtFirstName)
+                return
+            }
+            CreateDriver(email: email, password: pass, firstName: firstName, lastName: lastName, phone: phone, confirmPassword: confirmPass, updatedRoles: roles, username: username).execute()
         }
     }
     
-    //save Driver
+    //save button
     @IBAction func saveDriver(_ sender: Any) {
         if(!isUserEditing) {
             let thereWereErrors = checkForErrors()
@@ -296,11 +352,21 @@ class CreateDriverViewController: UIViewController {
         }
             
         else {
-            print("update dr")
+            let thereWereErrors = false
+            if !thereWereErrors {
+                updateDriver()
+            }
             
         }
     }
     
+    private func updateDriver() {
+        
+        if let firstName = txtFirstName.text, let lastName = txtLastName.text, let phone = phoneTxt.text, let driverID = driver?.driverID {
+            UpdateDriver(driverID: driverID, firstName: firstName, lastName: lastName, phone: phone).execute()
+        }
+    }
+    // Alamo save driver
     private func alamoSaveDriver() {
         
         let url = URL(string: "https://api-fhdev.vibe.rs/users/new")!
@@ -371,50 +437,56 @@ class CreateDriverViewController: UIViewController {
             errors = true
             message += "First name is empty"
             AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: txtFirstName)
-//            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtFirstName)
-            
         }
         else if (txtLastName.text?.isEmpty)!
         {
             errors = true
             message += "Last Name is empty"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtLastName)
+            AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: txtLastName)
 
         }
-        else if (txtEmail.text?.isEmpty)!
+        else if (phoneTxt.text?.isEmpty)!
         {
             errors = true
-            message += "Email is empty"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtEmail)
+            message += "Enter a phone No."
+            AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: phoneTxt)
             
         }
-        else if !((txtEmail.text?.contains("@"))!)
-        {
-            errors = true
-            message += "Invalid Email Address"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtEmail)
-            
+        if isEditing == false {
+            if (txtEmail.text?.isEmpty)!
+            {
+                errors = true
+                message += "Email is empty"
+                AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: txtEmail)
+                
+            }
+            else if !((txtEmail.text?.contains("@"))!)
+            {
+                errors = true
+                message += "Invalid Email Address"
+                AlertManager.alertWithTitle(title: title, message: message, viewController: self, toFocus: txtEmail)
+                
+            }
+            else if (txtPassword.text?.isEmpty)!
+            {
+                errors = true
+                message += "Password is empty"
+                alertWithTitle(title: title, message: message, ViewController: self, toFocus:txtPassword)
+            }
+            else if (txtPassword.text?.count)!<6
+            {
+                
+                errors = true
+                message += "Password must be at least 6 characters"
+                alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtPassword)
+            }
+            else if !(txtPassword.text == txtConfirmPassword.text) {
+                
+                errors = true
+                message += "Password don't match"
+                alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtConfirmPassword)
+            }
         }
-        else if (txtPassword.text?.isEmpty)!
-        {
-            errors = true
-            message += "Password is empty"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:txtPassword)
-        }
-        else if (txtPassword.text?.count)!<6
-        {
-
-            errors = true
-            message += "Password must be at least 6 characters"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtPassword)
-        }
-        else if !(txtPassword.text == txtConfirmPassword.text) {
-            
-            errors = true
-            message += "Password don't match"
-            alertWithTitle(title: title, message: message, ViewController: self, toFocus:self.txtConfirmPassword)
-        }
-        
         return errors
     }
     

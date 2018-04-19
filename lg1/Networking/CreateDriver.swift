@@ -18,15 +18,18 @@ class CreateDriver: BasePostRequest {
     private var phone: String
     private var confirmPassword: String
     private var updatedRoles: [String]
+    private var username: String
     
-    init(email: String, password: String, firstName: String, lastName: String, phone: String, confirmPassword: String, updatedRoles: [String]) {
+    init(email: String, password: String, firstName: String, lastName: String, phone: String, confirmPassword: String, updatedRoles: [String], username: String) {
         self.email = email
         self.password = password
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone
         self.confirmPassword = confirmPassword
-        self.updatedRoles = updatedRoles    }
+        self.updatedRoles = updatedRoles
+        self.username = username
+    }
     
     override func path() -> String {
         return "/users/new"
@@ -40,7 +43,8 @@ class CreateDriver: BasePostRequest {
             "email": email,
             "password": password,
             "password_confirmation": confirmPassword,
-            "roles": updatedRoles
+            "roles": updatedRoles,
+            "username": username
         ]
     }
     
